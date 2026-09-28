@@ -1,0 +1,4 @@
+.DS_Store
+# Originalbilder (unkomprimiert) – Web-Versionen liegen in assets/img
+images/
+.claude/
