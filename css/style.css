@@ -15,6 +15,7 @@
   --orange: #ff7a00;
   --blue: #1a6bff;
   --yellow: #ffd60a;
+  --forest: #169c3c;
 
   --radius: 18px;
   --wrap: 1180px;
@@ -158,6 +159,28 @@ h1 {
 }
 .highlights a:hover .ring { transform: scale(1.06); }
 
+.ring--icon::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  background: #0a0a0a;
+  border: 3px solid #fff;
+}
+.ring--icon svg {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  margin: auto;
+  width: 40%;
+  height: 40%;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .hero__image { margin: 0 auto; }
 .hero__image img {
   width: 100%;
@@ -278,6 +301,31 @@ h1 {
   border-radius: 50%;
   background: var(--accent);
 }
+
+/* Karten ohne Foto (Training) */
+.card--text { border-top: 6px solid var(--accent); }
+.card--text .card__body { padding-top: 28px; }
+.icon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  background: #0a0a0a;
+  box-shadow: 0 0 0 3px #fff, 0 0 0 6px var(--accent);
+}
+.icon svg {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.card--text:hover .icon { background: var(--accent); }
+.card--text .chips span:first-child { color: #fff; }
 
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .chips span {
