@@ -89,14 +89,13 @@ a { color: inherit; }
 .nav .nav__cta:hover { background: #333; }
 
 /* ---------- Hero ---------- */
-.hero { padding-top: 20px; }
+.hero { padding-top: 0; }
 
 .hero__frame {
   position: relative;
   display: flex;
   align-items: flex-end;
-  min-height: min(82vh, 760px);
-  border-radius: var(--radius);
+  min-height: min(88vh, 860px);
   overflow: hidden;
   background: #0a0a0a;
   color: #fff;
@@ -116,10 +115,11 @@ a { color: inherit; }
   background: linear-gradient(180deg, rgba(0,0,0,.05) 20%, rgba(0,0,0,.55) 55%, rgba(0,0,0,.85) 100%);
 }
 
+.hero__frame > .wrap { position: relative; z-index: 1; }
 .hero__content {
   position: relative;
   z-index: 1;
-  padding: 48px;
+  padding: 56px 0;
   max-width: 1040px;
 }
 
@@ -367,10 +367,9 @@ a:focus-visible, .btn:focus-visible {
   .logo { font-size: 18px; }
   .nav a:not(.nav__cta) { display: none; }
 
-  .hero { padding-top: 12px; }
-  .hero__frame { min-height: 78vh; border-radius: 14px; }
+  .hero__frame { min-height: 82vh; }
   .hero__bg { object-position: 18% center; }
-  .hero__content { padding: 28px 22px; }
+  .hero__content { padding: 32px 0; }
   .hero__actions .btn { width: auto; flex: 1; }
 
   .section { padding-top: 72px; }
