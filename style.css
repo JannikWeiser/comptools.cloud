@@ -366,9 +366,7 @@ img { filter: grayscale(1) contrast(1.08); }
 .hardware-img {
   width: 100%; height: 100%; min-height: 320px; aspect-ratio: 4 / 3; object-fit: cover;
   border-radius: var(--radius);
-  transition: filter .5s;
 }
-.hardware-img:hover { filter: grayscale(0); }
 .hardware-contact { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--grey-300); }
 .hardware-contact p { margin: 0; font-size: 18px; }
 
