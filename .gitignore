@@ -1,4 +1,6 @@
-.DS_Store
-# Originalbilder (unkomprimiert) – Web-Versionen liegen in assets/img
+# Originalfotos (die Website nutzt die verkleinerten Bilder in assets/img/)
 images/
+
+# System- und Tool-Dateien
+.DS_Store
 .claude/

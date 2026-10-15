@@ -1,164 +1,251 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>comptools.cloud – Tools &amp; Technik für Kletterwettkämpfe</title>
-  <meta name="description" content="Digitale Tools und Veranstaltungstechnik für Kletterwettkämpfe: Callzone-Management, Lead-Uhr, Videosystem für Einsprüche, Netzwerktechnik, Ergebnisdienst und Livestreams.">
-  <meta name="theme-color" content="#ffffff">
-  <meta property="og:title" content="comptools.cloud – Tools & Technik für Kletterwettkämpfe">
-  <meta property="og:description" content="Digitale Tools und Veranstaltungstechnik für Kletterwettkämpfe.">
-  <meta property="og:image" content="https://comptools.cloud/assets/img/hero.jpg">
+  <title>Comptools – Software & Technik für Kletterwettkämpfe</title>
+  <meta name="description" content="Web-Apps für Officials und Veranstalter von Kletterwettkämpfen: Callzone-Management, Lead-Uhr und TI-Rechner. Dazu Hardware für Wettkämpfe. Von Jannik Weiser.">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:title" content="Comptools – Software & Technik für Kletterwettkämpfe">
+  <meta property="og:description" content="Callzone-Management, Lead-Uhr und TI-Rechner für Officials und Veranstalter.">
+  <link rel="canonical" href="https://comptools.cloud/">
+  <meta property="og:url" content="https://comptools.cloud/">
+  <meta property="og:image" content="https://comptools.cloud/assets/img/hero-wall.jpg">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="alternate" hreflang="de" href="https://comptools.cloud/">
+  <link rel="alternate" hreflang="en" href="https://comptools.cloud/en/">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <header class="topbar">
-    <div class="wrap topbar__inner">
-      <a href="#top" class="logo" aria-label="comptools.cloud – nach oben">comptools<span>.cloud</span></a>
-      <nav class="nav" aria-label="Hauptnavigation">
-        <a href="#tools">Tools</a>
-        <a href="#technik">Technik</a>
-        <a href="#kontakt" class="nav__cta">Kontakt</a>
-      </nav>
+<!-- NAVIGATION -->
+<header class="site-header">
+  <div class="nav-pill">
+    <a href="#top" class="wordmark">comptools<span class="wordmark-by">by Jannik Weiser</span></a>
+    <nav class="nav" id="nav" aria-label="Hauptnavigation">
+      <a href="#software">Software</a>
+      <a href="#wettkampftechnik">Wettkampftechnik</a>
+      <a href="en/" class="nav-lang" lang="en" hreflang="en" aria-label="English version"><span class="lang-short">EN</span><span class="lang-long">English</span></a>
+      <a href="#kontakt" class="nav-cta">Kontakt</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav"><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <img class="hero-img" src="assets/img/hero-wall.jpg" alt="Wettkampfwand mit Publikum bei einer Kletter-EM">
+    <div class="hero-content">
+      <h1>Tools für den <em>Wettkampf.</em></h1>
+      <p class="hero-lead">Web-Apps für Officials und Veranstalter von Kletterwettkämpfen.</p>
+      <div class="hero-bottom">
+        <div class="hero-actions">
+          <a href="#software" class="btn btn-light">Software entdecken</a>
+          <a href="#wettkampftechnik" class="btn btn-outline-light">Wettkampftechnik</a>
+        </div>
+      </div>
     </div>
-  </header>
+  </section>
 
-  <main id="top">
-
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero__frame">
-        <img class="hero__bg" src="assets/img/hero.jpg" alt="Kletter-Wettkampf mit Publikum an der Außenwand" fetchpriority="high">
-        <div class="wrap"><div class="hero__content">
-          <p class="eyebrow">Sport · Event · Technik</p>
-          <h1>Tools &amp; Technik<br>für Kletter&shy;wettkämpfe.</h1>
-          <p class="hero__lead">
-            Digitale Helfer für einen reibungslosen Ablauf – und die passende Technik
-            zum Mieten, Kaufen oder mit Beratung.
-          </p>
-          <div class="hero__actions">
-            <a class="btn btn--light" href="#tools">Zu den Tools</a>
-            <a class="btn btn--outline" href="#technik">Zur Technik</a>
-          </div>
-        </div></div>
-      </div>
-    </section>
-
-    <!-- Tools -->
-    <section id="tools" class="section wrap">
-      <div class="section__head">
-        <span class="section__num">01</span>
-        <h2>Tools</h2>
-        <p>Web-Anwendungen, die direkt im Browser laufen – ohne Installation.</p>
-      </div>
-
-      <div class="grid grid--2">
-        <article id="callzone" class="card" style="--accent: var(--green)">
-          <div class="card__media">
-            <img src="assets/img/callzone.jpg" alt="Bildschirm mit Callzone-Übersicht in der Kletterhalle" loading="lazy">
-          </div>
-          <div class="card__body">
-            <span class="tag">Tool</span>
-            <h3>Callzone-Management</h3>
-            <p>Das Tool, um die Callzone zu managen. Egal in welcher Disziplin.</p>
-            <a class="btn" href="https://callzone-management.onrender.com" target="_blank" rel="noopener">Tool öffnen <span aria-hidden="true">↗</span></a>
-          </div>
-        </article>
-
-        <article id="lead-uhr" class="card" style="--accent: var(--yellow)">
-          <div class="card__media">
-            <img src="assets/img/lead-uhr.jpg" alt="Beleuchtete Leadwand bei einem Abendwettkampf" loading="lazy">
-          </div>
-          <div class="card__body">
-            <span class="tag">Tool</span>
-            <h3>Lead-Uhr</h3>
-            <p>Erweiterung für die Boulderuhr von ItsBlue. Ideal, um Leadwettkämpfe mit einer guten Uhr auszustatten.</p>
-            <a class="btn" href="https://timer.comptools.cloud" target="_blank" rel="noopener">Tool öffnen <span aria-hidden="true">↗</span></a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Technik -->
-    <section id="technik" class="section wrap">
-      <div class="section__head">
-        <span class="section__num">02</span>
-        <h2>Technik</h2>
-        <p>Professionelle Technik für deinen Wettkampf. Um auch die staubigste Boulderhalle zu überstehen.<br>
-          <strong>Mieten</strong>, <strong>Kaufen</strong> oder mit <strong>Beratung</strong> rund um deine Ausstattung.</p>
-      </div>
-
-      <div class="grid grid--2">
-        <article id="video" class="card" style="--accent: var(--red)">
-          <div class="card__media">
-            <img src="assets/img/video.jpg" alt="Videosystem im Koffer mit Mehrkamera-Ansicht" loading="lazy">
-          </div>
-          <div class="card__body">
-            <h3>Videosystem für Einsprüche</h3>
-            <p>Multi-Kamera-Aufzeichnung mit Replay, damit die Jury Einsprüche schnell und fair prüfen kann.</p>
-            <a class="btn btn--ghost" href="mailto:info@comptools.cloud?subject=Anfrage%3A%20Videosystem%20f%C3%BCr%20Einspr%C3%BCche">Anfragen <span aria-hidden="true">→</span></a>
-          </div>
-        </article>
-
-        <article id="netzwerk" class="card" style="--accent: var(--blue)">
-          <div class="card__media">
-            <img src="assets/img/netzwerk.jpg" alt="Robuster Netzwerk-Koffer mit PoE-Anschlüssen" loading="lazy">
-          </div>
-          <div class="card__body">
-            <h3>Netzwerktechnik &amp; Ergebnisdienst</h3>
-            <p>Ein stabiles Netzwerk in der Halle ist entscheidend für den Wettkampf. Egal ob für den Ergebnisdienst, Livestream oder weitere Anzeigetafeln.</p>
-            <a class="btn btn--ghost" href="mailto:info@comptools.cloud?subject=Anfrage%3A%20Netzwerktechnik%20%26%20Ergebnisdienst">Anfragen <span aria-hidden="true">→</span></a>
-          </div>
-        </article>
-
-        <article id="livestream" class="card" style="--accent: var(--orange)">
-          <div class="card__media">
-            <img src="assets/img/livestream.jpg" alt="Livestream-Regieplatz mit Mischpult und Monitoren" loading="lazy">
-          </div>
-          <div class="card__body">
-            <h3>Livestreams</h3>
-            <p>Vom kompakten Setup bis zur Mehrkamera-Produktion mit Grafiken und Kommentar. Dein Wettkampf live auf YouTube, Instagram &amp; Co.</p>
-            <a class="btn btn--ghost" href="mailto:info@comptools.cloud?subject=Anfrage%3A%20Livestream">Anfragen <span aria-hidden="true">→</span></a>
-          </div>
-        </article>
-
-        <article id="itsblue" class="card" style="--accent: var(--forest)">
-          <div class="card__media card__media--timer" aria-hidden="true">
-            <span class="timer">00:04<small>.00</small></span>
-          </div>
-          <div class="card__body">
-            <h3>Bouldertimer &amp; Speedanlagen</h3>
-            <p>Kaufe die führende Boulderuhr und die modernste Speedanlage direkt bei ITsBlue. Egal ob für deine Kletterhalle oder den großen Wettkampf.</p>
-            <a class="btn btn--ghost" href="https://itsblue.de" target="_blank" rel="noopener">Zu Itsblue <span aria-hidden="true">↗</span></a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Kontakt -->
-    <section id="kontakt" class="contact">
-      <div class="wrap">
-        <p class="eyebrow eyebrow--light">Kontakt</p>
-        <h2>Fragen, Anfragen oder Ideen?</h2>
-        <p class="contact__lead">Schreib uns – wir melden uns schnellstmöglich zurück.</p>
-        <a class="contact__mail" href="mailto:info@comptools.cloud">info@comptools.cloud</a>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="footer">
-    <div class="wrap footer__inner">
-      <span>© <span id="year">2026</span> comptools.cloud</span>
-      <nav aria-label="Rechtliches">
-        <a href="impressum.html">Impressum</a>
-        <a href="datenschutz.html">Datenschutz</a>
-      </nav>
+  <!-- SOFTWARE -->
+  <section id="software" class="section software-intro reveal">
+    <p class="eyebrow">Software</p>
+    <h2>Apps für den Wettkampftag</h2>
+    <div class="app-chips">
+      <a href="#callzone" style="--tool: var(--c-lime)"><i></i>Callzone-Management</a>
+      <a href="#lead-uhr" style="--tool: var(--c-red)"><i></i>Lead-Uhr</a>
+      <a href="#ti-rechner" style="--tool: var(--c-orange)"><i></i>TI-Rechner</a>
     </div>
-  </footer>
+  </section>
 
-  <script src="js/main.js"></script>
+  <!-- CALLZONE-MANAGEMENT -->
+  <section id="callzone" class="tool-section tool-section-wide" style="--tool: var(--c-lime)">
+    <div class="tool-copy reveal">
+      <h2>Callzone-Management</h2>
+      <p class="tool-lead">Zeigt live, wer gerade an der Wand ist, wer als Nächstes dran ist und wer danach kommt, pro Route und direkt aus results.info.</p>
+      <ul class="tool-features">
+        <li><b>Live</b><span>aktualisiert sich automatisch alle paar Sekunden</span></li>
+        <li><b>results.info</b><span>Live-Daten direkt von Vertical-Life results.info</span></li>
+        <li><b>Verschiedene Modi</b><span>einzelne Runde, Sequenz mehrerer Runden, Speed-Training oder gemeinsame Sitzung für mehrere Tablets</span></li>
+        <li><b>Einfache Bedienung</b><span>auf iPad, Laptop oder großem Screen, einfach im Browser</span></li>
+      </ul>
+      <div class="tool-actions">
+        <a class="btn btn-tool" href="https://callzone-management.onrender.com" target="_blank" rel="noopener">Callzone öffnen <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+
+    <!-- Handy-Mockup im Look der App -->
+    <div class="mock reveal" aria-hidden="true">
+      <div class="float">
+        <div class="tablet">
+          <div class="tablet-cam"></div>
+          <div class="screen czt">
+            <div class="czt-top"><b>Herren · Qualifikation Lead</b><span class="czt-live">Live</span></div>
+            <div class="czt-lanes">
+              <div class="czt-lane" data-lane="0">
+                <p class="czt-heading">Route 1</p>
+                <div class="czt-card czt-go"><p class="czt-label">Climbing</p><p class="czt-ath"></p></div>
+                <div class="czt-card czt-next"><p class="czt-label">Next</p><p class="czt-ath"></p></div>
+                <ol class="czt-queue"><li></li><li></li><li></li><li></li></ol>
+              </div>
+              <div class="czt-lane" data-lane="1">
+                <p class="czt-heading">Route 2</p>
+                <div class="czt-card czt-go"><p class="czt-label">Climbing</p><p class="czt-ath"></p></div>
+                <div class="czt-card czt-next"><p class="czt-label">Next</p><p class="czt-ath"></p></div>
+                <ol class="czt-queue"><li></li><li></li><li></li><li></li></ol>
+              </div>
+            </div>
+            <p class="czt-foot">Next up: Damen · Qualifikation Lead</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEAD-UHR -->
+  <section id="lead-uhr" class="tool-section tool-section-flip tool-section-wide" style="--tool: var(--c-red)">
+    <div class="tool-copy reveal">
+      <h2>Lead-Uhr</h2>
+      <p class="tool-lead">Erweiterung für die Boulderuhr von Itsblue. Damit bekommen Leadwettkämpfe eine gute Uhr: zwei Timer nebeneinander, gesteuert von einer Seite.</p>
+      <ul class="tool-features">
+        <li><b>2 Timer</b><span>nebeneinander mit Live-Vorschau und Status</span></li>
+        <li><b>Steuerung</b><span>Neustart, Pause und Segment überspringen, einzeln oder für beide</span></li>
+        <li><b>Anzeigen</b><span>Display-Link für beliebig viele Screens</span></li>
+        <li><b>Browser</b><span>läuft ohne Installation direkt im Browser</span></li>
+      </ul>
+      <div class="tool-actions">
+        <a class="btn btn-tool" href="https://timer.comptools.cloud" target="_blank" rel="noopener">Lead-Uhr öffnen <span aria-hidden="true">↗</span></a>
+        <a class="btn btn-outline-light" href="https://itsblue.de" target="_blank" rel="noopener">Timer bei itsblue.de kaufen <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+
+    <!-- Handy-Mockup im Look der App -->
+    <div class="mock reveal" aria-hidden="true">
+      <div class="float float-delay">
+        <div class="tablet tablet-tilt-left">
+          <div class="tablet-cam"></div>
+          <div class="screen lut">
+            <div class="lut-head">
+              <b>Timer-Steuerung</b>
+              <span class="lut-btn lut-red">Beide neu starten</span>
+              <span class="lut-btn lut-warn">Beide pausieren</span>
+              <span class="lut-btn lut-ok">Beide fortsetzen</span>
+            </div>
+            <div class="lut-panels">
+              <div class="lut-panel">
+                <div class="lut-panel-head"><span class="lut-badge">Timer 1</span><b>Route 1</b><span class="lut-live">Live</span></div>
+                <div class="lut-screen"><span class="lut-route">Route 1</span><span class="lut-time" data-start="342">05:42</span></div>
+                <div class="lut-controls"><span class="lut-btn lut-red">Neustart</span><span class="lut-btn lut-warn">Pause</span><span class="lut-btn">Segment überspringen</span></div>
+              </div>
+              <div class="lut-panel">
+                <div class="lut-panel-head"><span class="lut-badge">Timer 2</span><b>Route 2</b><span class="lut-live">Live</span></div>
+                <div class="lut-screen"><span class="lut-route">Route 2</span><span class="lut-time" data-start="118">01:58</span></div>
+                <div class="lut-controls"><span class="lut-btn lut-red">Neustart</span><span class="lut-btn lut-warn">Pause</span><span class="lut-btn">Segment überspringen</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TI-RECHNER -->
+  <section id="ti-rechner" class="tool-section" style="--tool: var(--c-orange)">
+    <div class="tool-copy reveal">
+      <h2>TI-Rechner</h2>
+      <p class="tool-lead">Nach einem Technischen Zwischenfall eingeben, wo er passiert ist. Die App berechnet, wann der Athlet wieder einsteigt.</p>
+      <ul class="tool-features">
+        <li><b>Lead</b><span>Erholungszeit, frühester Neustart und Countdown</span></li>
+        <li><b>Boulder</b><span>Rotation-Slot, Gutschrift und sekundäre Isolation</span></li>
+        <li><b>Offline</b><span>als App auf dem Home-Bildschirm nutzbar</span></li>
+        <li><b>DE / EN</b><span>automatisch nach Gerätesprache</span></li>
+      </ul>
+      <div class="tool-actions">
+        <a class="btn btn-tool" href="https://ti.comptools.cloud/" target="_blank" rel="noopener">TI-Rechner öffnen <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+
+    <!-- Handy-Mockup im Look der App -->
+    <div class="mock reveal" aria-hidden="true">
+      <div class="float">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="app">
+            <p class="app-title"><span>TI</span>-Rechner</p>
+            <p class="app-sub">Technischer Zwischenfall</p>
+            <div class="app-seg"><span>Lead</span><span class="on">Boulder</span></div>
+            <div class="app-card">
+              <p class="app-label">Qualifikation · 5 Boulder, 5 min fix</p>
+              <div class="app-row"><span>Startposition</span><b>12</b></div>
+              <div class="app-row"><span>Boulder</span><b>B3</b></div>
+              <div class="app-row"><span>Restzeit bei Versuchsbeginn</span><b>2:30</b></div>
+            </div>
+            <div class="app-card app-result">
+              <p class="app-label">Wiedereinstieg</p>
+              <p class="app-value">14:42 Uhr · B3</p>
+              <div class="app-row"><span>Gutschrift</span><b>2:30</b></div>
+            </div>
+            <div class="app-card">
+              <p class="app-label">Ablauf des Athleten</p>
+              <div class="app-timeline"><i class="tl-iso"></i><i class="tl-cz"></i><i class="tl-slot"></i><span class="tl-now" id="tl-now"></span></div>
+              <div class="app-legend"><span class="lg-iso">Sek. Isolation</span><span class="lg-cz">Call Zone</span><span class="lg-slot">TI-Slot</span></div>
+            </div>
+            <div class="app-countdown">
+              <p class="app-label">Live-Countdown</p>
+              <p class="app-timer" id="mock-timer">04:12</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUS DER PRAXIS -->
+  <section class="maker section">
+    <img class="maker-img reveal" src="assets/img/jury.jpg" alt="Jannik Weiser als Schiedsrichter mit Handy bei einem Boulderwettkampf">
+    <div class="maker-copy reveal">
+      <p class="eyebrow">Aus der Praxis</p>
+      <p class="maker-text">Ich bin Jannik und auf über 20 Kletterwettkämpfen im Jahr als Schiedsrichter und Techniker im Einsatz. <span class="muted">Diese Tools entstehen dort, wo im Ablauf etwas fehlt, und werden auf echten Wettkämpfen getestet.</span></p>
+    </div>
+  </section>
+
+  <!-- WETTKAMPFTECHNIK -->
+  <section id="wettkampftechnik" class="section hardware-wrap">
+    <div class="hardware reveal">
+      <div class="hardware-copy">
+        <p class="eyebrow">Wettkampftechnik</p>
+        <h2>Hardware &amp; Schulungen</h2>
+        <p class="hardware-lead">Vom VAR-System über die Netzwerktechnik bis zum Livestream: Ich bringe die Technik mit, berate dich zu Events, Hardware und Software und schule dein Personal. Fehlen dir Leute, vermittle ich dir gern erfahrenes Wettkampfpersonal.</p>
+        <div class="hardware-contact">
+          <p><b>Erzähl mir, was du vorhast.</b></p>
+          <a class="btn" href="mailto:info@comptools.cloud?subject=Wettkampftechnik">info@comptools.cloud <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <img class="hardware-img" src="assets/img/tech-desk.jpg" alt="Technik-Arbeitsplatz mit Multiview-Monitor, Stream Deck und Laptop" loading="lazy">
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="kontakt" class="contact-wrap">
+    <div class="contact reveal">
+      <p class="eyebrow">Kontakt</p>
+      <h2>Fragen oder Feedback zu den Tools?</h2>
+      <p class="contact-lead">Du willst ein Tool auf deinem Wettkampf einsetzen, hast einen Fehler gefunden oder eine Idee? Schreib mir.</p>
+      <a class="contact-mail" href="mailto:info@comptools.cloud?subject=Comptools">info@comptools.cloud <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <span>© <span id="year">2026</span> Comptools · Jannik Weiser</span>
+  <span class="footer-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></span>
+</footer>
+
+<script src="main.js"></script>
 </body>
 </html>
