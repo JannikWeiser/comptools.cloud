@@ -33,13 +33,16 @@ function setOpen(section, open) {
 }
 tools.forEach((section) => {
   section.querySelector('.tool-toggle').addEventListener('click', () => {
-    setOpen(section, !section.classList.contains('is-open'));
+    const open = !section.classList.contains('is-open');
+    // Immer nur ein Tool offen: die anderen schließen
+    if (open) tools.forEach((t) => t !== section && setOpen(t, false));
+    setOpen(section, open);
   });
 });
 // Direktlink wie /#lead-uhr öffnet das passende Tool
 function openFromHash() {
   const target = tools.find((t) => '#' + t.id === location.hash);
-  if (target) setOpen(target, true);
+  if (target) tools.forEach((t) => setOpen(t, t === target));
 }
 openFromHash();
 window.addEventListener('hashchange', openFromHash);
