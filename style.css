@@ -111,11 +111,14 @@ img { filter: grayscale(1) contrast(1.08); }
   color: var(--white); background: var(--black);
   overflow: hidden;
 }
+.hero-media { position: absolute; inset: 0; }
 .hero-img {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  opacity: .72; transform: scale(1.06);
-  animation: hero-zoom 14s var(--ease) forwards;
+  opacity: 0; transform: scale(1.06);
+  transition: opacity 1.2s ease;
 }
+.hero-img.is-active { opacity: .72; animation: hero-zoom 14s var(--ease) forwards; }
+.hero-img[data-disc="boulder"] { object-position: 50% 30%; }
 @keyframes hero-zoom { to { transform: scale(1); } }
 .hero::after {
   content: ""; position: absolute; inset: 0;
@@ -148,6 +151,29 @@ img { filter: grayscale(1) contrast(1.08); }
 .hero-lead { font-size: clamp(18px, 2vw, 24px); margin: clamp(16px, 2vw, 24px) 0 0; color: rgba(255,255,255,.82); }
 @media (min-width: 761px) { .hero-lead { white-space: nowrap; } }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* Wettkampf-Uhr im Hero: wechselt zwischen Lead, Speed und Boulder */
+.wall-clock {
+  margin-left: auto; min-width: 230px;
+  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4px 16px;
+  padding: 14px 20px 16px; border-radius: 18px;
+  background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.14);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+.wc-disc { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.7); }
+.wc-disc i { width: 8px; height: 8px; border-radius: 50%; background: var(--wc-color, var(--c-blue)); box-shadow: 0 0 10px var(--wc-color, var(--c-blue)); }
+.wc-steps { display: flex; gap: 5px; justify-self: end; }
+.wc-steps i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.25); transition: background .3s; }
+.wc-steps i.on { background: var(--white); }
+.wc-time {
+  grid-column: 1 / -1;
+  font-size: clamp(40px, 5vw, 58px); font-weight: 800; letter-spacing: -0.02em; line-height: 1;
+  font-variant-numeric: tabular-nums; color: var(--white);
+  transition: color .25s;
+}
+.wc-time.red { color: #ff3b4f; }
+.wc-time.flash { animation: wc-flash .5s steps(2) 3; }
+@keyframes wc-flash { 50% { opacity: .15; } }
 
 /* ---------- Sections ---------- */
 .section { max-width: var(--max); margin: 0 auto; padding: clamp(72px, 11vw, 140px) var(--pad); }
@@ -449,32 +475,89 @@ html:not(.js) .tool-plus { display: none; }
 .footer-links a { color: inherit; text-decoration: none; }
 .footer-links a:hover { color: var(--ink); text-decoration: underline; }
 
-/* ---------- Scroll-Route am rechten Rand (Speed-Route) ---------- */
+/* ---------- Scroll-Route am rechten Rand (Speed, Lead, Boulder) ---------- */
 .route {
-  --hold-size: 24px; --speed-red: #c8102e;
-  position: fixed; z-index: 40; right: clamp(10px, 1.6vw, 26px); top: 104px; bottom: 34px; width: 72px;
+  --hold-size: 24px; --route-color: #c8102e;
+  position: fixed; z-index: 40; right: clamp(10px, 1.6vw, 26px); top: 96px; bottom: 30px; width: 72px;
   pointer-events: none;
 }
+/* Umschalter S · L · B direkt unter der Kopfzeile */
+.route-switch {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 3px; padding: 3px; border-radius: 999px;
+  background: rgba(255,255,255,.85); backdrop-filter: blur(8px);
+  box-shadow: 0 4px 14px rgba(0,0,0,.12); pointer-events: auto;
+}
+.route-switch button {
+  width: 22px; height: 22px; border: 0; border-radius: 50%; padding: 0; cursor: pointer;
+  font-size: 11px; font-weight: 800; background: transparent; color: var(--grey-600);
+  transition: background .2s, color .2s;
+}
+.route-switch button:hover { color: var(--ink); }
+.route-switch button[aria-pressed="true"] { background: var(--route-color); color: var(--white); }
+.route.is-running .route-switch { opacity: .5; }
+
+/* Anzeigetafel für die Runs */
+.route-board {
+  position: absolute; top: 0; right: calc(100% + 6px);
+  display: flex; flex-direction: column; align-items: flex-end;
+  padding: 7px 12px; border-radius: 12px; background: var(--black); color: var(--white);
+  opacity: 0; transform: translateX(8px); pointer-events: none;
+  transition: opacity .25s, transform .3s var(--ease);
+}
+.route-board.show { opacity: 1; transform: none; }
+.route-board small { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.55); }
+.route-board b { font-size: 20px; font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.route-board.red b { color: #ff3b4f; }
+
+.route-wall { position: absolute; top: 42px; bottom: 0; left: 0; right: 0; }
 .route-hold {
   position: absolute; left: calc(var(--x) * (100% - var(--hold-size))); bottom: calc(var(--y) * (100% - var(--hold-size)));
   width: var(--hold-size); height: var(--hold-size); padding: 0;
   background: none; border: 0;
 }
 .route-hold svg {
-  display: block; width: 100%; height: 100%;
-  fill: #c9c9c9; transform: rotate(var(--turn));
+  display: block; width: 100%; height: 100%; overflow: visible;
+  fill: #c9c9c9; transform: rotate(var(--turn)) scale(var(--size, 1));
   filter: drop-shadow(0 1px 2px rgba(0,0,0,.3));
   transition: fill .35s, transform .35s var(--ease);
 }
-.route-hold.reached svg { fill: var(--speed-red); transform: rotate(var(--turn)) scale(1.12); }
+.route-hold.reached svg { fill: var(--route-color); transform: rotate(var(--turn)) scale(calc(var(--size, 1) * 1.12)); }
 .route-stop { cursor: pointer; pointer-events: auto; }
-.route-stop:hover svg, .route-stop:focus-visible svg { transform: rotate(var(--turn)) scale(1.35); }
+.route-stop:hover svg, .route-stop:focus-visible svg { transform: rotate(var(--turn)) scale(calc(var(--size, 1) * 1.35)); }
+
+/* Boulder: Start, Zone und Top wie im Wettkampf markiert */
+.route-tag {
+  position: absolute; left: 100%; top: -4px; margin-left: 2px;
+  min-width: 15px; height: 15px; padding: 0 3px; border-radius: 4px;
+  display: grid; place-items: center;
+  font-size: 9px; font-weight: 800; line-height: 1;
+  background: var(--white); color: var(--black); box-shadow: 0 1px 3px rgba(0,0,0,.3);
+}
+.route-hold.reached .route-tag { background: var(--route-color); color: var(--white); }
+
+/* Lead: Expressen und Seil */
+.route-draw {
+  position: absolute; width: 8px; height: 18px;
+  left: calc(var(--x) * (100% - var(--hold-size)) + var(--hold-size) / 2 - 4px);
+  bottom: calc(var(--y) * (100% - var(--hold-size)) + var(--hold-size) / 2 - 9px);
+}
+.route-draw svg { display: block; width: 100%; height: 100%; fill: none; stroke: #9a9a9a; stroke-width: 1.6; stroke-linecap: round; transition: stroke .3s; }
+.route-draw.clipped svg { stroke: var(--black); }
+.route-draw.clipped { animation: clip .35s var(--ease); }
+@keyframes clip { 50% { transform: scale(1.4); } }
+.route-rope {
+  position: absolute; inset: calc(var(--hold-size) / 2); width: calc(100% - var(--hold-size)); height: calc(100% - var(--hold-size));
+  overflow: visible; pointer-events: none;
+}
+.route-rope polyline { fill: none; stroke: #e6a100; stroke-width: 2; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
+
+/* Kletterer */
 .route-climber {
-  position: absolute;
+  position: absolute; z-index: 2;
   left: calc(var(--cx) * (100% - var(--hold-size)) + var(--hold-size) / 2);
   bottom: calc(var(--cy) * (100% - var(--hold-size)) + var(--hold-size) / 2);
   width: 22px; height: 30px; margin: 0 0 -22px -11px;
-  transition: left .15s linear;
 }
 .route-climber svg {
   display: block; width: 100%; height: 100%; overflow: visible;
@@ -484,11 +567,13 @@ html:not(.js) .tool-plus { display: none; }
 }
 .route-climber circle { fill: var(--black); stroke: none; }
 .route-climber.flip svg { transform: scaleX(-1); }
+.route-climber.falling svg { transform: rotate(160deg); }
 .route-climber .pose-top { display: none; }
 .route.topped .route-climber .pose-climb { display: none; }
 .route.topped .route-climber .pose-top { display: inline; }
 .route.topped .route-climber svg { transform: none; animation: cheer .8s var(--ease) infinite alternate; }
 @keyframes cheer { to { transform: translateY(-3px); } }
+
 .route-label, .route-flag {
   position: absolute; right: calc(100% + 8px); top: 50%; transform: translate(6px, -50%);
   padding: 5px 11px; border-radius: 999px; white-space: nowrap;
@@ -496,12 +581,12 @@ html:not(.js) .tool-plus { display: none; }
   opacity: 0; pointer-events: none; transition: opacity .2s, transform .25s var(--ease);
 }
 .route-stop:hover .route-label, .route-stop:focus-visible .route-label { opacity: 1; transform: translate(0, -50%); }
-.route-flag { background: var(--speed-red); color: var(--white); font-weight: 800; }
+.route-flag { background: var(--route-color); color: var(--white); font-weight: 800; }
 .route.topped .route-flag { opacity: 1; transform: translate(0, -50%); animation: top-pop .6s var(--ease); }
-.route.topped .route-top:hover .route-flag { opacity: 0; }
+.route.topped .route-top:hover .route-flag, .route.is-running .route-flag { opacity: 0; }
 .route.topped .route-top svg { animation: top-pulse 1.6s ease-out infinite; }
 @keyframes top-pop { 0% { transform: translate(8px, -50%) scale(.6); } 60% { transform: translate(0, -50%) scale(1.12); } }
-@keyframes top-pulse { 50% { transform: rotate(var(--turn)) scale(1.45); } }
+@keyframes top-pulse { 50% { transform: rotate(var(--turn)) scale(calc(var(--size, 1) * 1.45)); } }
 
 /* ---------- Einblenden beim Scrollen ---------- */
 .js .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
@@ -574,6 +659,8 @@ html:not(.js) .tool-plus { display: none; }
   .nav .nav-cta { margin: 6px 0 0; text-align: center; }
 
   .hero-actions { width: 100%; flex-direction: column; }
+  .wall-clock { margin-left: 0; width: 100%; padding: 12px 16px 14px; }
+  .wc-time { font-size: 40px; }
   .hero-actions .btn { justify-content: center; }
   .hardware { padding: 28px 20px; }
   .tool-name { white-space: normal; }
@@ -582,11 +669,18 @@ html:not(.js) .tool-plus { display: none; }
   .tool-section .btn { width: 100%; justify-content: center; }
   .maker { grid-template-columns: 1fr; }
   .contact-mail { padding: 16px 22px; }
-  .route { --hold-size: 12px; right: 2px; top: 90px; bottom: 22px; width: 22px; }
+  .route { --hold-size: 12px; right: 2px; top: 86px; bottom: 22px; width: 22px; }
+  .route-switch { flex-direction: column; left: auto; right: 0; transform: none; padding: 2px; gap: 2px; }
+  .route-switch button { width: 18px; height: 18px; font-size: 9px; }
+  .route-wall { top: 72px; }
+  .route-tag { min-width: 11px; height: 11px; font-size: 7px; top: -3px; }
+  .route-draw { transform: scale(.7); }
   .route-climber { width: 14px; height: 19px; margin: 0 0 -14px -7px; }
   .route-climber svg { stroke-width: 3; }
   .route-label { display: none; }
   .route-flag { font-size: 11px; padding: 4px 9px; }
+  .route-board { padding: 5px 9px; }
+  .route-board b { font-size: 16px; }
 }
 
 
