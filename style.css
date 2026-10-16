@@ -111,15 +111,12 @@ img { filter: grayscale(1) contrast(1.08); }
   color: var(--white); background: var(--black);
   overflow: hidden;
 }
-.hero-media { position: absolute; inset: 0; }
 .hero-img {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  opacity: 0; transform: scale(1.08);
-  /* Kein abruptes Zurückspringen: Zoom läuft weich weiter, während das Bild ausblendet */
-  transition: opacity 1.4s ease, transform 10s linear;
+  opacity: .72; transform: scale(1.06);
+  animation: hero-zoom 14s var(--ease) forwards;
 }
-.hero-img.is-active { opacity: .72; transform: scale(1); }
-.hero-img[data-disc="boulder"] { object-position: 50% 30%; }
+@keyframes hero-zoom { to { transform: scale(1); } }
 .hero::after {
   content: ""; position: absolute; inset: 0;
   background:
@@ -151,30 +148,6 @@ img { filter: grayscale(1) contrast(1.08); }
 .hero-lead { font-size: clamp(18px, 2vw, 24px); margin: clamp(16px, 2vw, 24px) 0 0; color: rgba(255,255,255,.82); }
 @media (min-width: 761px) { .hero-lead { white-space: nowrap; } }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
-
-/* Wettkampf-Uhr im Hero: wechselt zwischen Lead, Speed und Boulder */
-.wall-clock {
-  margin-left: auto; width: 250px;
-  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4px 16px;
-  padding: 14px 20px 16px; border-radius: 18px;
-  background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.14);
-  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-}
-.wc-disc { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.7); }
-.wc-disc i { width: 8px; height: 8px; border-radius: 50%; background: var(--wc-color, var(--c-blue)); box-shadow: 0 0 10px var(--wc-color, var(--c-blue)); }
-.wc-steps { display: flex; gap: 5px; justify-self: end; }
-.wc-steps i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.25); transition: background .3s; }
-.wc-steps i.on { background: var(--white); }
-.wc-time {
-  grid-column: 1 / -1;
-  font-size: clamp(40px, 5vw, 58px); font-weight: 800; letter-spacing: -0.02em; line-height: 1;
-  font-variant-numeric: tabular-nums; color: var(--white);
-  transition: color .25s;
-}
-.wc-time.red { color: #ff3b4f; }
-.wc-time.word { font-size: clamp(30px, 3.6vw, 42px); line-height: 1.38; }
-.wc-time.flash { animation: wc-flash .5s steps(2) 3; }
-@keyframes wc-flash { 50% { opacity: .15; } }
 
 /* ---------- Sections ---------- */
 .section { max-width: var(--max); margin: 0 auto; padding: clamp(72px, 11vw, 140px) var(--pad); }
@@ -579,8 +552,6 @@ html:not(.js) .tool-plus { display: none; }
   .nav .nav-cta { margin: 6px 0 0; text-align: center; }
 
   .hero-actions { width: 100%; flex-direction: column; }
-  .wall-clock { margin-left: 0; width: 100%; padding: 12px 16px 14px; }
-  .wc-time { font-size: 40px; }
   .hero-actions .btn { justify-content: center; }
   .hardware { padding: 28px 20px; }
   .tool-name { white-space: normal; }

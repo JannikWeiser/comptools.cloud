@@ -109,57 +109,6 @@ if (timer) {
   setInterval(tick, 1000);
 }
 
-// Wettkampf-Uhr im Hero: Lead-Countdown, Speed-Zeit und Boulder-Rotation im Wechsel, mit passendem Bild
-const wallClock = document.querySelector('.wall-clock');
-if (wallClock && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  const enLang = document.documentElement.lang === 'en';
-  const time = wallClock.querySelector('.wc-time');
-  const disc = wallClock.querySelector('.wc-disc span');
-  const steps = [...wallClock.querySelectorAll('.wc-steps i')];
-  const images = [...document.querySelectorAll('.hero-img')];
-  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
-  const show = (name, color, step) => {
-    disc.textContent = name;
-    wallClock.style.setProperty('--wc-color', color);
-    steps.forEach((s, i) => s.classList.toggle('on', i === step));
-    images.forEach((img) => img.classList.toggle('is-active', img.dataset.disc === name.toLowerCase()));
-    time.classList.remove('red', 'flash', 'word');
-  };
-  const phases = [
-    async () => { // Lead: Countdown ab 6:00
-      show('Lead', 'var(--c-blue)', 0);
-      for (let s = 360; s >= 354; s--) { time.textContent = mmss(s); await wait(1000); }
-    },
-    async () => { // Speed: Zeit läuft hoch und bleibt rot stehen
-      show('Speed', 'var(--c-red)', 1);
-      const final = 4.9 + Math.random() * 1.1;
-      const t0 = performance.now();
-      await new Promise((done) => {
-        const id = setInterval(() => {
-          const t = (performance.now() - t0) / 1000;
-          time.textContent = Math.min(t, final).toFixed(2).replace('.', enLang ? '.' : ',');
-          if (t >= final) { clearInterval(id); done(); }
-        }, 30);
-      });
-      time.classList.add('red');
-      await wait(2600);
-    },
-    async () => { // Boulder: Rotation läuft ab, Wechsel blinkt, neue Rotation 4:00
-      show('Boulder', 'var(--c-green)', 2);
-      for (let s = 5; s >= 0; s--) { time.textContent = mmss(s); await wait(1000); }
-      time.textContent = enLang ? 'Rotate' : 'Wechsel';
-      time.classList.add('red', 'flash', 'word');
-      await wait(1600);
-      time.classList.remove('red', 'flash', 'word');
-      time.textContent = '04:00';
-      await wait(1400);
-    },
-  ];
-  (async () => {
-    for (let i = 0; ; i = (i + 1) % phases.length) await phases[i]();
-  })();
-}
-
 // Kletterer an der rechten Bildschirmkante, im Profil: die Kante ist seine Wand.
 // Klettert beim Scrollen nach oben (und beim Zurückscrollen runter); in Pausen chalkt er, oben jubelt er.
 (() => {
