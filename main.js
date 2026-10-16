@@ -25,6 +25,25 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
+// Tools auf- und zuklappen
+const tools = [...document.querySelectorAll('.tool-section')];
+function setOpen(section, open) {
+  section.classList.toggle('is-open', open);
+  section.querySelector('.tool-toggle').setAttribute('aria-expanded', open);
+}
+tools.forEach((section) => {
+  section.querySelector('.tool-toggle').addEventListener('click', () => {
+    setOpen(section, !section.classList.contains('is-open'));
+  });
+});
+// Direktlink wie /#lead-uhr öffnet das passende Tool
+function openFromHash() {
+  const target = tools.find((t) => '#' + t.id === location.hash);
+  if (target) setOpen(target, true);
+}
+openFromHash();
+window.addEventListener('hashchange', openFromHash);
+
 const mmss = (s) => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
 
 // Callzone-Mockup: pro Route rücken die Athleten abwechselnd eins weiter (Beispielnamen)

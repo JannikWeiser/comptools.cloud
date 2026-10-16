@@ -57,51 +57,59 @@
   <section id="software" class="section software-intro reveal">
     <p class="eyebrow">Software</p>
     <h2>Apps für den Wettkampftag</h2>
-    <div class="app-chips">
-      <a href="#callzone" style="--tool: var(--c-lime)"><i></i>Callzone-Management</a>
-      <a href="#lead-uhr" style="--tool: var(--c-red)"><i></i>Lead-Uhr</a>
-      <a href="#ti-rechner" style="--tool: var(--c-orange)"><i></i>TI-Rechner</a>
-    </div>
   </section>
 
   <!-- CALLZONE-MANAGEMENT -->
-  <section id="callzone" class="tool-section tool-section-wide" style="--tool: var(--c-lime)">
-    <div class="tool-copy reveal">
-      <h2>Callzone-Management</h2>
-      <p class="tool-lead">Zeigt live, wer gerade an der Wand ist, wer als Nächstes dran ist und wer danach kommt, pro Route und direkt aus results.info.</p>
-      <ul class="tool-features">
-        <li><b>Live</b><span>aktualisiert sich automatisch alle paar Sekunden</span></li>
-        <li><b>results.info</b><span>Live-Daten direkt von Vertical-Life results.info</span></li>
-        <li><b>Verschiedene Modi</b><span>einzelne Runde, Sequenz mehrerer Runden, Speed-Training oder gemeinsame Sitzung für mehrere Tablets</span></li>
-        <li><b>Einfache Bedienung</b><span>auf iPad, Laptop oder großem Screen, einfach im Browser</span></li>
-      </ul>
-      <div class="tool-actions">
-        <a class="btn btn-tool" href="https://callzone-management.onrender.com" target="_blank" rel="noopener">Callzone öffnen <span aria-hidden="true">↗</span></a>
-      </div>
-    </div>
+  <section id="callzone" class="tool-section tool-section-wide reveal" style="--tool: var(--c-lime)">
+    <h3 class="tool-head">
+      <button class="tool-toggle" aria-expanded="false" aria-controls="callzone-panel">
+        <i class="tool-dot"></i>
+        <span class="tool-name">Callzone-Management</span>
+        <span class="tool-tag">Wer ist an der Wand, wer ist als Nächstes dran</span>
+        <span class="tool-plus" aria-hidden="true"></span>
+      </button>
+    </h3>
+    <div class="tool-panel" id="callzone-panel" role="region" aria-label="Callzone-Management">
+      <div class="tool-panel-inner">
+        <div class="tool-body">
+          <div class="tool-copy">
+            <p class="tool-lead">Zeigt live, wer gerade an der Wand ist, wer als Nächstes dran ist und wer danach kommt, pro Route und direkt aus results.info.</p>
+            <ul class="tool-features">
+              <li><b>Live</b><span>aktualisiert sich automatisch alle paar Sekunden</span></li>
+              <li><b>results.info</b><span>Live-Daten direkt von Vertical-Life results.info</span></li>
+              <li><b>Verschiedene Modi</b><span>einzelne Runde, Sequenz mehrerer Runden, Speed-Training oder gemeinsame Sitzung für mehrere Tablets</span></li>
+              <li><b>Einfache Bedienung</b><span>auf iPad, Laptop oder großem Screen, einfach im Browser</span></li>
+            </ul>
+            <div class="tool-actions">
+              <a class="btn btn-tool" href="https://callzone-management.onrender.com" target="_blank" rel="noopener">Callzone öffnen <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
 
-    <!-- Handy-Mockup im Look der App -->
-    <div class="mock reveal" aria-hidden="true">
-      <div class="float">
-        <div class="tablet">
-          <div class="tablet-cam"></div>
-          <div class="screen czt">
-            <div class="czt-top"><b>Herren · Qualifikation Lead</b><span class="czt-live">Live</span></div>
-            <div class="czt-lanes">
-              <div class="czt-lane" data-lane="0">
-                <p class="czt-heading">Route 1</p>
-                <div class="czt-card czt-go"><p class="czt-label">Climbing</p><p class="czt-ath"></p></div>
-                <div class="czt-card czt-next"><p class="czt-label">Next</p><p class="czt-ath"></p></div>
-                <ol class="czt-queue"><li></li><li></li><li></li><li></li></ol>
-              </div>
-              <div class="czt-lane" data-lane="1">
-                <p class="czt-heading">Route 2</p>
-                <div class="czt-card czt-go"><p class="czt-label">Climbing</p><p class="czt-ath"></p></div>
-                <div class="czt-card czt-next"><p class="czt-label">Next</p><p class="czt-ath"></p></div>
-                <ol class="czt-queue"><li></li><li></li><li></li><li></li></ol>
+          <!-- Handy-Mockup im Look der App -->
+          <div class="mock" aria-hidden="true">
+            <div class="float">
+              <div class="tablet">
+                <div class="tablet-cam"></div>
+                <div class="screen czt">
+                  <div class="czt-top"><b>Herren · Qualifikation Lead</b><span class="czt-live">Live</span></div>
+                  <div class="czt-lanes">
+                    <div class="czt-lane" data-lane="0">
+                      <p class="czt-heading">Route 1</p>
+                      <div class="czt-card czt-go"><p class="czt-label">Climbing</p><p class="czt-ath"></p></div>
+                      <div class="czt-card czt-next"><p class="czt-label">Next</p><p class="czt-ath"></p></div>
+                      <ol class="czt-queue"><li></li><li></li><li></li><li></li></ol>
+                    </div>
+                    <div class="czt-lane" data-lane="1">
+                      <p class="czt-heading">Route 2</p>
+                      <div class="czt-card czt-go"><p class="czt-label">Climbing</p><p class="czt-ath"></p></div>
+                      <div class="czt-card czt-next"><p class="czt-label">Next</p><p class="czt-ath"></p></div>
+                      <ol class="czt-queue"><li></li><li></li><li></li><li></li></ol>
+                    </div>
+                  </div>
+                  <p class="czt-foot">Next up: Damen · Qualifikation Lead</p>
+                </div>
               </div>
             </div>
-            <p class="czt-foot">Next up: Damen · Qualifikation Lead</p>
           </div>
         </div>
       </div>
@@ -109,44 +117,57 @@
   </section>
 
   <!-- LEAD-UHR -->
-  <section id="lead-uhr" class="tool-section tool-section-flip tool-section-wide" style="--tool: var(--c-red)">
-    <div class="tool-copy reveal">
-      <h2>Lead-Uhr</h2>
-      <p class="tool-lead">Erweiterung für die Boulderuhr von Itsblue. Damit bekommen Leadwettkämpfe eine gute Uhr: zwei Timer nebeneinander, gesteuert von einer Seite.</p>
-      <ul class="tool-features">
-        <li><b>2 Timer</b><span>nebeneinander mit Live-Vorschau und Status</span></li>
-        <li><b>Steuerung</b><span>Neustart, Pause und Segment überspringen, einzeln oder für beide</span></li>
-        <li><b>Anzeigen</b><span>Display-Link für beliebig viele Screens</span></li>
-        <li><b>Browser</b><span>läuft ohne Installation direkt im Browser</span></li>
-      </ul>
-      <div class="tool-actions">
-        <a class="btn btn-tool" href="https://timer.comptools.cloud" target="_blank" rel="noopener">Lead-Uhr öffnen <span aria-hidden="true">↗</span></a>
-        <a class="btn btn-outline-light" href="https://itsblue.de" target="_blank" rel="noopener">Timer bei itsblue.de kaufen <span aria-hidden="true">↗</span></a>
-      </div>
-    </div>
-
-    <!-- Handy-Mockup im Look der App -->
-    <div class="mock reveal" aria-hidden="true">
-      <div class="float float-delay">
-        <div class="tablet tablet-tilt-left">
-          <div class="tablet-cam"></div>
-          <div class="screen lut">
-            <div class="lut-head">
-              <b>Timer-Steuerung</b>
-              <span class="lut-btn lut-red">Beide neu starten</span>
-              <span class="lut-btn lut-warn">Beide pausieren</span>
-              <span class="lut-btn lut-ok">Beide fortsetzen</span>
+  <section id="lead-uhr" class="tool-section tool-section-flip tool-section-wide reveal" style="--tool: var(--c-red)">
+    <h3 class="tool-head">
+      <button class="tool-toggle" aria-expanded="false" aria-controls="lead-uhr-panel">
+        <i class="tool-dot"></i>
+        <span class="tool-name">Lead-Uhr</span>
+        <span class="tool-tag">Zwei Timer, eine Steuerung</span>
+        <span class="tool-plus" aria-hidden="true"></span>
+      </button>
+    </h3>
+    <div class="tool-panel" id="lead-uhr-panel" role="region" aria-label="Lead-Uhr">
+      <div class="tool-panel-inner">
+        <div class="tool-body">
+          <div class="tool-copy">
+            <p class="tool-lead">Erweiterung für die Boulderuhr von Itsblue. Damit bekommen Leadwettkämpfe eine gute Uhr: zwei Timer nebeneinander, gesteuert von einer Seite.</p>
+            <ul class="tool-features">
+              <li><b>2 Timer</b><span>nebeneinander mit Live-Vorschau und Status</span></li>
+              <li><b>Steuerung</b><span>Neustart, Pause und Segment überspringen, einzeln oder für beide</span></li>
+              <li><b>Anzeigen</b><span>Display-Link für beliebig viele Screens</span></li>
+              <li><b>Browser</b><span>läuft ohne Installation direkt im Browser</span></li>
+            </ul>
+            <div class="tool-actions">
+              <a class="btn btn-tool" href="https://timer.comptools.cloud" target="_blank" rel="noopener">Lead-Uhr öffnen <span aria-hidden="true">↗</span></a>
+              <a class="btn btn-outline-light" href="https://itsblue.de" target="_blank" rel="noopener">Timer bei itsblue.de kaufen <span aria-hidden="true">↗</span></a>
             </div>
-            <div class="lut-panels">
-              <div class="lut-panel">
-                <div class="lut-panel-head"><span class="lut-badge">Timer 1</span><b>Route 1</b><span class="lut-live">Live</span></div>
-                <div class="lut-screen"><span class="lut-route">Route 1</span><span class="lut-time" data-start="342">05:42</span></div>
-                <div class="lut-controls"><span class="lut-btn lut-red">Neustart</span><span class="lut-btn lut-warn">Pause</span><span class="lut-btn">Segment überspringen</span></div>
-              </div>
-              <div class="lut-panel">
-                <div class="lut-panel-head"><span class="lut-badge">Timer 2</span><b>Route 2</b><span class="lut-live">Live</span></div>
-                <div class="lut-screen"><span class="lut-route">Route 2</span><span class="lut-time" data-start="118">01:58</span></div>
-                <div class="lut-controls"><span class="lut-btn lut-red">Neustart</span><span class="lut-btn lut-warn">Pause</span><span class="lut-btn">Segment überspringen</span></div>
+          </div>
+
+          <!-- Handy-Mockup im Look der App -->
+          <div class="mock" aria-hidden="true">
+            <div class="float float-delay">
+              <div class="tablet tablet-tilt-left">
+                <div class="tablet-cam"></div>
+                <div class="screen lut">
+                  <div class="lut-head">
+                    <b>Timer-Steuerung</b>
+                    <span class="lut-btn lut-red">Beide neu starten</span>
+                    <span class="lut-btn lut-warn">Beide pausieren</span>
+                    <span class="lut-btn lut-ok">Beide fortsetzen</span>
+                  </div>
+                  <div class="lut-panels">
+                    <div class="lut-panel">
+                      <div class="lut-panel-head"><span class="lut-badge">Timer 1</span><b>Route 1</b><span class="lut-live">Live</span></div>
+                      <div class="lut-screen"><span class="lut-route">Route 1</span><span class="lut-time" data-start="342">05:42</span></div>
+                      <div class="lut-controls"><span class="lut-btn lut-red">Neustart</span><span class="lut-btn lut-warn">Pause</span><span class="lut-btn">Segment überspringen</span></div>
+                    </div>
+                    <div class="lut-panel">
+                      <div class="lut-panel-head"><span class="lut-badge">Timer 2</span><b>Route 2</b><span class="lut-live">Live</span></div>
+                      <div class="lut-screen"><span class="lut-route">Route 2</span><span class="lut-time" data-start="118">01:58</span></div>
+                      <div class="lut-controls"><span class="lut-btn lut-red">Neustart</span><span class="lut-btn lut-warn">Pause</span><span class="lut-btn">Segment überspringen</span></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -156,49 +177,62 @@
   </section>
 
   <!-- TI-RECHNER -->
-  <section id="ti-rechner" class="tool-section" style="--tool: var(--c-orange)">
-    <div class="tool-copy reveal">
-      <h2>TI-Rechner</h2>
-      <p class="tool-lead">Nach einem Technischen Zwischenfall eingeben, wo er passiert ist. Die App berechnet, wann der Athlet wieder einsteigt.</p>
-      <ul class="tool-features">
-        <li><b>Lead</b><span>Erholungszeit, frühester Neustart und Countdown</span></li>
-        <li><b>Boulder</b><span>Rotation-Slot, Gutschrift und sekundäre Isolation</span></li>
-        <li><b>Offline</b><span>als App auf dem Home-Bildschirm nutzbar</span></li>
-        <li><b>DE / EN</b><span>automatisch nach Gerätesprache</span></li>
-      </ul>
-      <div class="tool-actions">
-        <a class="btn btn-tool" href="https://ti.comptools.cloud/" target="_blank" rel="noopener">TI-Rechner öffnen <span aria-hidden="true">↗</span></a>
-      </div>
-    </div>
+  <section id="ti-rechner" class="tool-section reveal" style="--tool: var(--c-orange)">
+    <h3 class="tool-head">
+      <button class="tool-toggle" aria-expanded="false" aria-controls="ti-rechner-panel">
+        <i class="tool-dot"></i>
+        <span class="tool-name">TI-Rechner</span>
+        <span class="tool-tag">Wiedereinstieg nach einem Technischen Zwischenfall</span>
+        <span class="tool-plus" aria-hidden="true"></span>
+      </button>
+    </h3>
+    <div class="tool-panel" id="ti-rechner-panel" role="region" aria-label="TI-Rechner">
+      <div class="tool-panel-inner">
+        <div class="tool-body">
+          <div class="tool-copy">
+            <p class="tool-lead">Nach einem Technischen Zwischenfall eingeben, wo er passiert ist. Die App berechnet, wann der Athlet wieder einsteigt.</p>
+            <ul class="tool-features">
+              <li><b>Lead</b><span>Erholungszeit, frühester Neustart und Countdown</span></li>
+              <li><b>Boulder</b><span>Rotation-Slot, Gutschrift und sekundäre Isolation</span></li>
+              <li><b>Offline</b><span>als App auf dem Home-Bildschirm nutzbar</span></li>
+              <li><b>DE / EN</b><span>automatisch nach Gerätesprache</span></li>
+            </ul>
+            <div class="tool-actions">
+              <a class="btn btn-tool" href="https://ti.comptools.cloud/" target="_blank" rel="noopener">TI-Rechner öffnen <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
 
-    <!-- Handy-Mockup im Look der App -->
-    <div class="mock reveal" aria-hidden="true">
-      <div class="float">
-        <div class="phone">
-          <div class="phone-notch"></div>
-          <div class="app">
-            <p class="app-title"><span>TI</span>-Rechner</p>
-            <p class="app-sub">Technischer Zwischenfall</p>
-            <div class="app-seg"><span>Lead</span><span class="on">Boulder</span></div>
-            <div class="app-card">
-              <p class="app-label">Qualifikation · 5 Boulder, 5 min fix</p>
-              <div class="app-row"><span>Startposition</span><b>12</b></div>
-              <div class="app-row"><span>Boulder</span><b>B3</b></div>
-              <div class="app-row"><span>Restzeit bei Versuchsbeginn</span><b>2:30</b></div>
-            </div>
-            <div class="app-card app-result">
-              <p class="app-label">Wiedereinstieg</p>
-              <p class="app-value">14:42 Uhr · B3</p>
-              <div class="app-row"><span>Gutschrift</span><b>2:30</b></div>
-            </div>
-            <div class="app-card">
-              <p class="app-label">Ablauf des Athleten</p>
-              <div class="app-timeline"><i class="tl-iso"></i><i class="tl-cz"></i><i class="tl-slot"></i><span class="tl-now" id="tl-now"></span></div>
-              <div class="app-legend"><span class="lg-iso">Sek. Isolation</span><span class="lg-cz">Call Zone</span><span class="lg-slot">TI-Slot</span></div>
-            </div>
-            <div class="app-countdown">
-              <p class="app-label">Live-Countdown</p>
-              <p class="app-timer" id="mock-timer">04:12</p>
+          <!-- Handy-Mockup im Look der App -->
+          <div class="mock" aria-hidden="true">
+            <div class="float">
+              <div class="phone">
+                <div class="phone-notch"></div>
+                <div class="app">
+                  <p class="app-title"><span>TI</span>-Rechner</p>
+                  <p class="app-sub">Technischer Zwischenfall</p>
+                  <div class="app-seg"><span>Lead</span><span class="on">Boulder</span></div>
+                  <div class="app-card">
+                    <p class="app-label">Qualifikation · 5 Boulder, 5 min fix</p>
+                    <div class="app-row"><span>Startposition</span><b>12</b></div>
+                    <div class="app-row"><span>Boulder</span><b>B3</b></div>
+                    <div class="app-row"><span>Restzeit bei Versuchsbeginn</span><b>2:30</b></div>
+                  </div>
+                  <div class="app-card app-result">
+                    <p class="app-label">Wiedereinstieg</p>
+                    <p class="app-value">14:42 Uhr · B3</p>
+                    <div class="app-row"><span>Gutschrift</span><b>2:30</b></div>
+                  </div>
+                  <div class="app-card">
+                    <p class="app-label">Ablauf des Athleten</p>
+                    <div class="app-timeline"><i class="tl-iso"></i><i class="tl-cz"></i><i class="tl-slot"></i><span class="tl-now" id="tl-now"></span></div>
+                    <div class="app-legend"><span class="lg-iso">Sek. Isolation</span><span class="lg-cz">Call Zone</span><span class="lg-slot">TI-Slot</span></div>
+                  </div>
+                  <div class="app-countdown">
+                    <p class="app-label">Live-Countdown</p>
+                    <p class="app-timer" id="mock-timer">04:12</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
