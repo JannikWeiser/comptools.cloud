@@ -160,8 +160,8 @@ if (wallClock && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
   })();
 }
 
-// Kletterer am rechten Bildschirmrand: klettert beim Scrollen nach oben (und beim Zurückscrollen runter).
-// Arme und Beine werden pro Bild berechnet; in Pausen holt er sich Chalk, oben jubelt er.
+// Kletterer an der rechten Bildschirmkante, im Profil: die Kante ist seine Wand.
+// Klettert beim Scrollen nach oben (und beim Zurückscrollen runter); in Pausen chalkt er, oben jubelt er.
 (() => {
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const el = document.createElement('div');
@@ -170,48 +170,58 @@ if (wallClock && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
   el.innerHTML = `
     <svg viewBox="0 0 40 64">
       <g class="climber-body">
-        <path class="climber-limbs" d=""/>
-        <path class="climber-torso" d="M20 18V35"/>
-        <rect class="climber-bag" x="21.5" y="33" width="5" height="5" rx="1.5"/>
-        <circle class="climber-head" cx="20" cy="11.5" r="4.6"/>
+        <path class="climber-far" d=""/>
+        <path class="climber-torso" d=""/>
+        <circle class="climber-head" cx="26.5" cy="10" r="4.4"/>
+        <path class="climber-near" d=""/>
       </g>
     </svg>
     <span class="chalk"><i></i><i></i><i></i><i></i><i></i></span>`;
   document.body.appendChild(el);
   const body = el.querySelector('.climber-body');
-  const limbs = el.querySelector('.climber-limbs');
+  const far = el.querySelector('.climber-far');
+  const near = el.querySelector('.climber-near');
+  const torso = el.querySelector('.climber-torso');
+  const head = el.querySelector('.climber-head');
 
+  const WALL = 38; // x-Position der Bildschirmkante im Bild
   const lerp = (a, b, t) => a + (b - a) * t;
   const mix = (p, q, t) => [lerp(p[0], q[0], t), lerp(p[1], q[1], t)];
   const seg = (a, b, c) => `M${a[0].toFixed(1)} ${a[1].toFixed(1)}L${b[0].toFixed(1)} ${b[1].toFixed(1)}L${c[0].toFixed(1)} ${c[1].toFixed(1)}`;
 
-  // Kletterpose für eine Phase im Bewegungszyklus (ein Zyklus = linker und rechter Zug)
+  // Arm und Bein zwischen "tief" und "hoch"
+  const arm = (t) => ({ hand: mix([WALL, 16], [WALL, 2], t), elbow: mix([33, 25], [33.5, 9], t) });
+  const leg = (t) => ({ foot: mix([WALL, 58], [WALL, 46], t), knee: mix([34.5, 47], [31.5, 38], t) });
+
+  // Kletterpose: vordere Hand und hinterer Fuß hoch, dann umgekehrt (diagonal wie beim echten Klettern)
   function climbPose(phase) {
-    const a = (1 - Math.cos(phase)) / 2; // 1 = linke Hand oben, rechter Fuß hoch angetreten
+    const a = (1 - Math.cos(phase)) / 2;
     const b = 1 - a;
-    // Pro Gliedmaße: Position "hoch" und "tief", gemischt je nach Phase
+    const lean = 1.2 * Math.sin(phase);  // Oberkörper pendelt leicht zur Wand und zurück
     return {
-      hl: mix([11.5, 13], [14, 1.5], a), el: mix([9.5, 21], [12, 10], a),
-      hr: mix([28.5, 13], [26, 1.5], b), er: mix([30.5, 21], [28, 10], b),
-      fl: mix([15, 58], [13.5, 47], b), kl: mix([15, 47], [9.5, 40], b),
-      fr: mix([25, 58], [26.5, 47], a), kr: mix([25, 47], [30.5, 40], a),
-      bob: 1.2 * Math.sin(phase * 2),
+      shoulder: [28 + lean * 0.5, 18], hip: [31, 35], head: [26.5 + lean * 0.4, 10],
+      nearArm: arm(a), farArm: arm(b), nearLeg: leg(b), farLeg: leg(a),
+      bob: 1.1 * Math.sin(phase * 2),
     };
   }
-  const topPose = { hl: [9, 2], hr: [31, 2], el: [12, 10], er: [28, 10], fl: [16, 62], fr: [24, 62], kl: [16.5, 49], kr: [23.5, 49], bob: 0 };
+  const topPose = {
+    shoulder: [28, 18], hip: [31, 35], head: [26.5, 10],
+    nearArm: { hand: [25, 1], elbow: [26.5, 9] }, farArm: { hand: [31, 0.5], elbow: [30.5, 8.5] },
+    nearLeg: leg(0), farLeg: leg(0.15), bob: 0,
+  };
 
   function draw(p, chalk = 0) {
-    // Chalken: rechte Hand wandert zum Chalkbag am Rücken und zurück
-    let hr = p.hr, er = p.er;
+    let nearArm = p.nearArm;
+    // Chalken: vordere Hand greift hinter den Rücken in den Chalkbag und wieder zurück
     if (chalk > 0) {
       const t = Math.sin(Math.min(1, chalk) * Math.PI);
-      hr = mix(p.hr, [25, 35], t);
-      er = mix(p.er, [29, 27], t);
+      nearArm = { hand: mix(p.nearArm.hand, [24, 34], t), elbow: mix(p.nearArm.elbow, [23, 25], t) };
     }
-    limbs.setAttribute('d', [
-      seg([16, 19], p.el, p.hl), seg([24, 19], er, hr),
-      seg([18, 35], p.kl, p.fl), seg([22, 35], p.kr, p.fr),
-    ].join(''));
+    far.setAttribute('d', seg(p.shoulder, p.farArm.elbow, p.farArm.hand) + seg(p.hip, p.farLeg.knee, p.farLeg.foot));
+    near.setAttribute('d', seg(p.shoulder, nearArm.elbow, nearArm.hand) + seg(p.hip, p.nearLeg.knee, p.nearLeg.foot));
+    torso.setAttribute('d', `M${p.shoulder[0].toFixed(1)} ${(p.shoulder[1] - 3).toFixed(1)}L${p.hip[0]} ${p.hip[1]}`);
+    head.setAttribute('cx', p.head[0].toFixed(1));
+    head.setAttribute('cy', p.head[1].toFixed(1));
     body.setAttribute('transform', `translate(0 ${p.bob.toFixed(2)})`);
   }
 

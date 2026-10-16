@@ -478,31 +478,31 @@ html:not(.js) .tool-plus { display: none; }
 
 /* ---------- Kletterer am rechten Bildschirmrand ---------- */
 .climber {
-  position: fixed; z-index: 40; right: clamp(6px, 1.2vw, 18px); bottom: 18px;
-  width: 34px; height: 54px; pointer-events: none;
+  position: fixed; z-index: 40; right: 0; bottom: 18px;
+  width: 36px; height: 58px; pointer-events: none;
   will-change: transform;
 }
-.climber svg { display: block; width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff) drop-shadow(0 3px 4px rgba(0,0,0,.3)); }
-.climber-limbs, .climber-torso { fill: none; stroke: var(--black); stroke-linecap: round; stroke-linejoin: round; }
-.climber-limbs { stroke-width: 2.8; }
-.climber-torso { stroke-width: 5.5; }
+.climber svg { display: block; width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff) drop-shadow(-2px 3px 4px rgba(0,0,0,.25)); }
+.climber-near, .climber-far, .climber-torso { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.climber-near { stroke: var(--black); stroke-width: 2.8; }
+.climber-far { stroke: #7a7a7a; stroke-width: 2.6; }
+.climber-torso { stroke: var(--black); stroke-width: 5.5; }
 .climber-head { fill: var(--black); }
-.climber-bag { fill: var(--c-red); }
 .climber.topped svg { animation: cheer .5s var(--ease) infinite alternate; }
-@keyframes cheer { to { transform: translateY(-4px) rotate(3deg); } }
+@keyframes cheer { to { transform: translateY(-4px) rotate(-3deg); } }
 
 /* Chalk-Wolke beim Chalken */
-.chalk { position: absolute; left: 60%; top: 52%; }
+.chalk { position: absolute; left: 55%; top: 54%; }
 .chalk i {
   position: absolute; width: 5px; height: 5px; border-radius: 50%;
   background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.08); opacity: 0;
 }
 .climber.puff .chalk i { animation: puff 1.4s ease-out forwards; }
-.climber.puff .chalk i:nth-child(1) { --dx: 10px; --dy: -6px; animation-delay: .55s; }
-.climber.puff .chalk i:nth-child(2) { --dx: 14px; --dy: 4px; animation-delay: .62s; }
-.climber.puff .chalk i:nth-child(3) { --dx: 6px; --dy: -12px; animation-delay: .7s; }
-.climber.puff .chalk i:nth-child(4) { --dx: 16px; --dy: -2px; animation-delay: .76s; width: 7px; height: 7px; }
-.climber.puff .chalk i:nth-child(5) { --dx: 9px; --dy: 8px; animation-delay: .82s; }
+.climber.puff .chalk i:nth-child(1) { --dx: -10px; --dy: -6px; animation-delay: .55s; }
+.climber.puff .chalk i:nth-child(2) { --dx: -14px; --dy: 4px; animation-delay: .62s; }
+.climber.puff .chalk i:nth-child(3) { --dx: -6px; --dy: -12px; animation-delay: .7s; }
+.climber.puff .chalk i:nth-child(4) { --dx: -16px; --dy: -2px; animation-delay: .76s; width: 7px; height: 7px; }
+.climber.puff .chalk i:nth-child(5) { --dx: -9px; --dy: 8px; animation-delay: .82s; }
 @keyframes puff {
   0% { opacity: .95; transform: translate(0, 0) scale(.6); }
   100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1.8); }
@@ -589,7 +589,7 @@ html:not(.js) .tool-plus { display: none; }
   .tool-section .btn { width: 100%; justify-content: center; }
   .maker { grid-template-columns: 1fr; }
   .contact-mail { padding: 16px 22px; }
-  .climber { width: 24px; height: 38px; right: 2px; bottom: 12px; }
+  .climber { width: 25px; height: 40px; right: 0; bottom: 12px; }
 }
 
 
