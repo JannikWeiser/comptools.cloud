@@ -154,7 +154,20 @@ if (holdSections.length) {
     route.appendChild(el);
     return el;
   });
-  route.insertAdjacentHTML('beforeend', '<span class="route-climber"></span>');
+  // Kletterer: Kletterpose (wird beim Klettern gespiegelt) und Jubelpose oben am Top
+  route.insertAdjacentHTML('beforeend', `<span class="route-climber" aria-hidden="true">
+    <svg viewBox="0 0 24 32">
+      <g class="pose-climb">
+        <circle cx="12" cy="5" r="3"/>
+        <path d="M12 9v10M12 11 6.5 4.5M12 11l5.5 3.5M12 19l-4 4.5-1 5.5M12 19l4.5 2.5 1.5 4.5"/>
+      </g>
+      <g class="pose-top">
+        <circle cx="12" cy="7" r="3"/>
+        <path d="M12 11v9M12 12.5 7 4.5M12 12.5l5-8M12 20l-3 4.5V30M12 20l3 4.5V30"/>
+      </g>
+    </svg>
+  </span>`);
+  const climber = route.querySelector('.route-climber');
   document.body.appendChild(route);
 
   const stops = holdSections.map((section, i) => ({ section, y: sectionAt[i] / (n - 1), at: 0 }));
@@ -183,6 +196,8 @@ if (holdSections.length) {
     route.style.setProperty('--cx', layoutHolds[k][0] + (layoutHolds[k + 1][0] - layoutHolds[k][0]) * t);
     route.style.setProperty('--cy', r);
     holds.forEach((h, j) => h.classList.toggle('reached', j <= f + 0.01));
+    // Zwei Züge pro Griff: Pose abwechselnd spiegeln
+    climber.classList.toggle('flip', Math.floor(f * 2) % 2 === 1);
     route.classList.toggle('topped', p > 0.995);
   };
   let ticking = false;
