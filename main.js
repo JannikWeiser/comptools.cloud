@@ -109,4 +109,68 @@ if (timer) {
   setInterval(tick, 1000);
 }
 
+// Scroll-Route: Griffe pro Abschnitt, ein Punkt klettert beim Scrollen nach oben
+const holdSections = [...document.querySelectorAll('[data-hold]')];
+if (holdSections.length) {
+  const en = document.documentElement.lang === 'en';
+  const route = document.createElement('nav');
+  route.className = 'route';
+  route.setAttribute('aria-label', en ? 'Page route' : 'Seitenroute');
+  route.innerHTML = '<span class="route-line"><i class="route-climbed"></i></span><span class="route-climber"></span>';
+  // Leicht unterschiedliche Griff-Formen wie an einer echten Wand
+  const shapes = ['62% 38% 55% 45% / 48% 60% 40% 52%', '40% 60% 35% 65% / 60% 40% 60% 40%', '55% 45% 60% 40% / 40% 55% 45% 60%'];
+  const stops = holdSections.map((section, i) => {
+    const stop = document.createElement('button');
+    stop.className = 'route-stop';
+    stop.type = 'button';
+    stop.style.setProperty('--hold', section.dataset.holdColor || 'var(--c-red)');
+    stop.style.setProperty('--shape', shapes[i % shapes.length]);
+    stop.style.setProperty('--turn', (i % 2 ? 18 : -14) + 'deg');
+    const top = section.hasAttribute('data-hold-top');
+    if (top) stop.classList.add('route-top');
+    stop.innerHTML = '<i></i><span class="route-label"></span>' + (top ? '<span class="route-flag">Top!</span>' : '');
+    stop.querySelector('.route-label').textContent = section.dataset.hold;
+    stop.setAttribute('aria-label', section.dataset.hold);
+    stop.addEventListener('click', () => {
+      if (section.classList.contains('tool-section')) location.hash = '#' + section.id;
+      else section.scrollIntoView({ behavior: 'smooth' });
+    });
+    route.appendChild(stop);
+    return { section, stop, at: 0 };
+  });
+  document.body.appendChild(route);
+
+  let maxScroll = 1;
+  const layout = () => {
+    maxScroll = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+    stops.forEach((s, i) => {
+      // Ein Griff gilt als erreicht, wenn sein Abschnitt im oberen Drittel ankommt
+      const top = s.section.getBoundingClientRect().top + scrollY - innerHeight * 0.35;
+      s.at = i === 0 ? 0 : s.section.hasAttribute('data-hold-top') ? 1 : Math.min(1, Math.max(0, top / maxScroll));
+      // Griffe gleichmäßig über die Route verteilt
+      s.stop.style.setProperty('--y', i / (stops.length - 1));
+    });
+    update();
+  };
+  const update = () => {
+    const p = Math.min(1, Math.max(0, scrollY / maxScroll));
+    // Kletterpunkt bewegt sich anteilig zwischen dem letzten und dem nächsten Griff
+    let i = 0;
+    while (i < stops.length - 2 && p >= stops[i + 1].at) i++;
+    const span = stops[i + 1].at - stops[i].at;
+    const part = span > 0 ? Math.min(1, Math.max(0, (p - stops[i].at) / span)) : 1;
+    route.style.setProperty('--p', (i + part) / (stops.length - 1));
+    stops.forEach((s) => s.stop.classList.toggle('reached', p >= s.at - 0.002));
+    route.classList.toggle('topped', p > 0.995);
+  };
+  let ticking = false;
+  addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(() => { update(); ticking = false; }); }
+  }, { passive: true });
+  addEventListener('resize', layout);
+  // Auf- und Zuklappen der Tools ändert die Seitenhöhe
+  new ResizeObserver(layout).observe(document.body);
+  layout();
+}
+
 document.getElementById('year').textContent = new Date().getFullYear();
