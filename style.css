@@ -114,12 +114,12 @@ img { filter: grayscale(1) contrast(1.08); }
 .hero-media { position: absolute; inset: 0; }
 .hero-img {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  opacity: 0; transform: scale(1.06);
-  transition: opacity 1.2s ease;
+  opacity: 0; transform: scale(1.08);
+  /* Kein abruptes Zurückspringen: Zoom läuft weich weiter, während das Bild ausblendet */
+  transition: opacity 1.4s ease, transform 10s linear;
 }
-.hero-img.is-active { opacity: .72; animation: hero-zoom 14s var(--ease) forwards; }
+.hero-img.is-active { opacity: .72; transform: scale(1); }
 .hero-img[data-disc="boulder"] { object-position: 50% 30%; }
-@keyframes hero-zoom { to { transform: scale(1); } }
 .hero::after {
   content: ""; position: absolute; inset: 0;
   background:
@@ -154,7 +154,7 @@ img { filter: grayscale(1) contrast(1.08); }
 
 /* Wettkampf-Uhr im Hero: wechselt zwischen Lead, Speed und Boulder */
 .wall-clock {
-  margin-left: auto; min-width: 230px;
+  margin-left: auto; width: 250px;
   display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4px 16px;
   padding: 14px 20px 16px; border-radius: 18px;
   background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.14);
@@ -172,6 +172,7 @@ img { filter: grayscale(1) contrast(1.08); }
   transition: color .25s;
 }
 .wc-time.red { color: #ff3b4f; }
+.wc-time.word { font-size: clamp(30px, 3.6vw, 42px); line-height: 1.38; }
 .wc-time.flash { animation: wc-flash .5s steps(2) 3; }
 @keyframes wc-flash { 50% { opacity: .15; } }
 
@@ -475,118 +476,37 @@ html:not(.js) .tool-plus { display: none; }
 .footer-links a { color: inherit; text-decoration: none; }
 .footer-links a:hover { color: var(--ink); text-decoration: underline; }
 
-/* ---------- Scroll-Route am rechten Rand (Speed, Lead, Boulder) ---------- */
-.route {
-  --hold-size: 24px; --route-color: #c8102e;
-  position: fixed; z-index: 40; right: clamp(10px, 1.6vw, 26px); top: 96px; bottom: 30px; width: 72px;
-  pointer-events: none;
+/* ---------- Kletterer am rechten Bildschirmrand ---------- */
+.climber {
+  position: fixed; z-index: 40; right: clamp(6px, 1.2vw, 18px); bottom: 18px;
+  width: 34px; height: 54px; pointer-events: none;
+  will-change: transform;
 }
-/* Umschalter S · L · B direkt unter der Kopfzeile */
-.route-switch {
-  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-  display: flex; gap: 3px; padding: 3px; border-radius: 999px;
-  background: rgba(255,255,255,.85); backdrop-filter: blur(8px);
-  box-shadow: 0 4px 14px rgba(0,0,0,.12); pointer-events: auto;
-}
-.route-switch button {
-  width: 22px; height: 22px; border: 0; border-radius: 50%; padding: 0; cursor: pointer;
-  font-size: 11px; font-weight: 800; background: transparent; color: var(--grey-600);
-  transition: background .2s, color .2s;
-}
-.route-switch button:hover { color: var(--ink); }
-.route-switch button[aria-pressed="true"] { background: var(--route-color); color: var(--white); }
-.route.is-running .route-switch { opacity: .5; }
+.climber svg { display: block; width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff) drop-shadow(0 3px 4px rgba(0,0,0,.3)); }
+.climber-limbs, .climber-torso { fill: none; stroke: var(--black); stroke-linecap: round; stroke-linejoin: round; }
+.climber-limbs { stroke-width: 2.8; }
+.climber-torso { stroke-width: 5.5; }
+.climber-head { fill: var(--black); }
+.climber-bag { fill: var(--c-red); }
+.climber.topped svg { animation: cheer .5s var(--ease) infinite alternate; }
+@keyframes cheer { to { transform: translateY(-4px) rotate(3deg); } }
 
-/* Anzeigetafel für die Runs */
-.route-board {
-  position: absolute; top: 0; right: calc(100% + 6px);
-  display: flex; flex-direction: column; align-items: flex-end;
-  padding: 7px 12px; border-radius: 12px; background: var(--black); color: var(--white);
-  opacity: 0; transform: translateX(8px); pointer-events: none;
-  transition: opacity .25s, transform .3s var(--ease);
+/* Chalk-Wolke beim Chalken */
+.chalk { position: absolute; left: 60%; top: 52%; }
+.chalk i {
+  position: absolute; width: 5px; height: 5px; border-radius: 50%;
+  background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.08); opacity: 0;
 }
-.route-board.show { opacity: 1; transform: none; }
-.route-board small { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.55); }
-.route-board b { font-size: 20px; font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.route-board.red b { color: #ff3b4f; }
-
-.route-wall { position: absolute; top: 42px; bottom: 0; left: 0; right: 0; }
-.route-hold {
-  position: absolute; left: calc(var(--x) * (100% - var(--hold-size))); bottom: calc(var(--y) * (100% - var(--hold-size)));
-  width: var(--hold-size); height: var(--hold-size); padding: 0;
-  background: none; border: 0;
+.climber.puff .chalk i { animation: puff 1.4s ease-out forwards; }
+.climber.puff .chalk i:nth-child(1) { --dx: 10px; --dy: -6px; animation-delay: .55s; }
+.climber.puff .chalk i:nth-child(2) { --dx: 14px; --dy: 4px; animation-delay: .62s; }
+.climber.puff .chalk i:nth-child(3) { --dx: 6px; --dy: -12px; animation-delay: .7s; }
+.climber.puff .chalk i:nth-child(4) { --dx: 16px; --dy: -2px; animation-delay: .76s; width: 7px; height: 7px; }
+.climber.puff .chalk i:nth-child(5) { --dx: 9px; --dy: 8px; animation-delay: .82s; }
+@keyframes puff {
+  0% { opacity: .95; transform: translate(0, 0) scale(.6); }
+  100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1.8); }
 }
-.route-hold svg {
-  display: block; width: 100%; height: 100%; overflow: visible;
-  fill: #c9c9c9; transform: rotate(var(--turn)) scale(var(--size, 1));
-  filter: drop-shadow(0 1px 2px rgba(0,0,0,.3));
-  transition: fill .35s, transform .35s var(--ease);
-}
-.route-hold.reached svg { fill: var(--route-color); transform: rotate(var(--turn)) scale(calc(var(--size, 1) * 1.12)); }
-.route-stop { cursor: pointer; pointer-events: auto; }
-.route-stop:hover svg, .route-stop:focus-visible svg { transform: rotate(var(--turn)) scale(calc(var(--size, 1) * 1.35)); }
-
-/* Boulder: Start, Zone und Top wie im Wettkampf markiert */
-.route-tag {
-  position: absolute; left: 100%; top: -4px; margin-left: 2px;
-  min-width: 15px; height: 15px; padding: 0 3px; border-radius: 4px;
-  display: grid; place-items: center;
-  font-size: 9px; font-weight: 800; line-height: 1;
-  background: var(--white); color: var(--black); box-shadow: 0 1px 3px rgba(0,0,0,.3);
-}
-.route-hold.reached .route-tag { background: var(--route-color); color: var(--white); }
-
-/* Lead: Expressen und Seil */
-.route-draw {
-  position: absolute; width: 8px; height: 18px;
-  left: calc(var(--x) * (100% - var(--hold-size)) + var(--hold-size) / 2 - 4px);
-  bottom: calc(var(--y) * (100% - var(--hold-size)) + var(--hold-size) / 2 - 9px);
-}
-.route-draw svg { display: block; width: 100%; height: 100%; fill: none; stroke: #9a9a9a; stroke-width: 1.6; stroke-linecap: round; transition: stroke .3s; }
-.route-draw.clipped svg { stroke: var(--black); }
-.route-draw.clipped { animation: clip .35s var(--ease); }
-@keyframes clip { 50% { transform: scale(1.4); } }
-.route-rope {
-  position: absolute; inset: calc(var(--hold-size) / 2); width: calc(100% - var(--hold-size)); height: calc(100% - var(--hold-size));
-  overflow: visible; pointer-events: none;
-}
-.route-rope polyline { fill: none; stroke: #e6a100; stroke-width: 2; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
-
-/* Kletterer */
-.route-climber {
-  position: absolute; z-index: 2;
-  left: calc(var(--cx) * (100% - var(--hold-size)) + var(--hold-size) / 2);
-  bottom: calc(var(--cy) * (100% - var(--hold-size)) + var(--hold-size) / 2);
-  width: 22px; height: 30px; margin: 0 0 -22px -11px;
-}
-.route-climber svg {
-  display: block; width: 100%; height: 100%; overflow: visible;
-  fill: none; stroke: var(--black); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round;
-  filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff) drop-shadow(0 2px 3px rgba(0,0,0,.3));
-  transition: transform .18s var(--ease);
-}
-.route-climber circle { fill: var(--black); stroke: none; }
-.route-climber.flip svg { transform: scaleX(-1); }
-.route-climber.falling svg { transform: rotate(160deg); }
-.route-climber .pose-top { display: none; }
-.route.topped .route-climber .pose-climb { display: none; }
-.route.topped .route-climber .pose-top { display: inline; }
-.route.topped .route-climber svg { transform: none; animation: cheer .8s var(--ease) infinite alternate; }
-@keyframes cheer { to { transform: translateY(-3px); } }
-
-.route-label, .route-flag {
-  position: absolute; right: calc(100% + 8px); top: 50%; transform: translate(6px, -50%);
-  padding: 5px 11px; border-radius: 999px; white-space: nowrap;
-  background: var(--black); color: var(--white); font-size: 12px; font-weight: 600;
-  opacity: 0; pointer-events: none; transition: opacity .2s, transform .25s var(--ease);
-}
-.route-stop:hover .route-label, .route-stop:focus-visible .route-label { opacity: 1; transform: translate(0, -50%); }
-.route-flag { background: var(--route-color); color: var(--white); font-weight: 800; }
-.route.topped .route-flag { opacity: 1; transform: translate(0, -50%); animation: top-pop .6s var(--ease); }
-.route.topped .route-top:hover .route-flag, .route.is-running .route-flag { opacity: 0; }
-.route.topped .route-top svg { animation: top-pulse 1.6s ease-out infinite; }
-@keyframes top-pop { 0% { transform: translate(8px, -50%) scale(.6); } 60% { transform: translate(0, -50%) scale(1.12); } }
-@keyframes top-pulse { 50% { transform: rotate(var(--turn)) scale(calc(var(--size, 1) * 1.45)); } }
 
 /* ---------- Einblenden beim Scrollen ---------- */
 .js .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
@@ -669,18 +589,7 @@ html:not(.js) .tool-plus { display: none; }
   .tool-section .btn { width: 100%; justify-content: center; }
   .maker { grid-template-columns: 1fr; }
   .contact-mail { padding: 16px 22px; }
-  .route { --hold-size: 12px; right: 2px; top: 86px; bottom: 22px; width: 22px; }
-  .route-switch { flex-direction: column; left: auto; right: 0; transform: none; padding: 2px; gap: 2px; }
-  .route-switch button { width: 18px; height: 18px; font-size: 9px; }
-  .route-wall { top: 72px; }
-  .route-tag { min-width: 11px; height: 11px; font-size: 7px; top: -3px; }
-  .route-draw { transform: scale(.7); }
-  .route-climber { width: 14px; height: 19px; margin: 0 0 -14px -7px; }
-  .route-climber svg { stroke-width: 3; }
-  .route-label { display: none; }
-  .route-flag { font-size: 11px; padding: 4px 9px; }
-  .route-board { padding: 5px 9px; }
-  .route-board b { font-size: 16px; }
+  .climber { width: 24px; height: 38px; right: 2px; bottom: 12px; }
 }
 
 
