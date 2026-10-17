@@ -477,17 +477,38 @@ html:not(.js) .tool-plus { display: none; }
 /* ---------- Kletterer am rechten Bildschirmrand ---------- */
 .climber {
   position: fixed; z-index: 40; right: 0; bottom: 18px;
-  width: 36px; height: 58px; pointer-events: none;
+  width: 40px; height: 64px; pointer-events: none;
   will-change: transform;
 }
 .climber svg { display: block; width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff) drop-shadow(-2px 3px 4px rgba(0,0,0,.25)); }
-.climber-near, .climber-far, .climber-torso { fill: none; stroke-linecap: round; stroke-linejoin: round; }
-.climber-near { stroke: var(--black); stroke-width: 2.8; }
-.climber-far { stroke: #7a7a7a; stroke-width: 2.6; }
-.climber-torso { stroke: var(--black); stroke-width: 5.5; }
+.climber-near, .climber-far, .climber-torso, .climber-harness { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.climber-near { stroke: var(--black); stroke-width: 2.9; }
+.climber-far { stroke: #7a7a7a; stroke-width: 2.7; }
+.climber-torso { stroke: var(--black); stroke-width: 6; }
+.climber-harness { stroke: #9a9a9a; stroke-width: 1.8; }
+.climber-bag { fill: #3a3a3a; }
 .climber-head { fill: var(--black); }
-.climber.topped svg { animation: cheer .5s var(--ease) infinite alternate; }
-@keyframes cheer { to { transform: translateY(-4px) rotate(-3deg); } }
+
+/* Seil beim Ablassen: Exe oben an der Kante, Seil bis zum Gurt */
+.climber-rope {
+  position: fixed; z-index: 39; top: 96px; right: var(--rope-right, 11px);
+  width: 0; height: 0; pointer-events: none;
+  opacity: 0; transition: opacity .35s;
+}
+.climber-rope.show { opacity: 1; }
+.rope-anchor {
+  position: absolute; top: -9px; left: -4px; width: 8px; height: 12px;
+  border: 2px solid #7a7a7a; border-radius: 4px; background: transparent;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.7);
+}
+.rope-line {
+  position: absolute; top: 2px; left: -1.5px; width: 3px; height: var(--rope-length, 0px);
+  border-radius: 2px;
+  background: repeating-linear-gradient(170deg, #e6a100 0 3px, #c47f00 3px 5px);
+  box-shadow: 0 0 0 1px rgba(255,255,255,.6);
+  transform-origin: top; transform: scaleY(0); transition: transform .45s cubic-bezier(.3, 1.4, .5, 1);
+}
+.climber-rope.show .rope-line { transform: scaleY(1); }
 
 /* Chalk-Wolke beim Chalken */
 .chalk { position: absolute; left: 55%; top: 54%; }
@@ -576,7 +597,8 @@ html:not(.js) .tool-plus { display: none; }
   .tool-section .btn { width: 100%; justify-content: center; }
   .maker { grid-template-columns: 1fr; }
   .contact-mail { padding: 16px 22px; }
-  .climber { width: 25px; height: 40px; right: 0; bottom: 12px; }
+  .climber { width: 27px; height: 43px; right: 0; bottom: 12px; }
+  .climber-rope { top: 86px; }
 }
 
 
