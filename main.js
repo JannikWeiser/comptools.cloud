@@ -127,8 +127,7 @@ if (timer) {
         <circle class="climber-head" cx="26.5" cy="10" r="4.6"/>
         <path class="climber-near" d=""/>
       </g>
-    </svg>
-    <span class="chalk"><i></i><i></i><i></i><i></i><i></i></span>`;
+    </svg>`;
   const rope = document.createElement('div');
   rope.className = 'climber-rope';
   rope.setAttribute('aria-hidden', 'true');
@@ -243,7 +242,6 @@ if (timer) {
   let idleSince = performance.now();
   let chalkStart = 0;
   let chalkHand = 'near';
-  let puffed = false;
   let running = false;
   let idleTimer = 0;
 
@@ -284,9 +282,8 @@ if (timer) {
       phase = lerp(phase, targetPhase, ease);
       // Solange nicht gescrollt wird: regelmäßig chalken, abwechselnd mit beiden Händen
       if (!reduceMotion && now - idleSince > CHALK_DELAY && rel < 0.995) {
-        if (!chalkStart) { chalkStart = now; puffed = false; }
+        if (!chalkStart) chalkStart = now;
         chalk = (now - chalkStart) / CHALK_MS;
-        if (chalk > 0.72 && !puffed) { puffed = true; el.classList.remove('puff'); void el.offsetWidth; el.classList.add('puff'); }
         if (chalk >= 1) {
           chalk = 0; chalkStart = 0;
           chalkHand = chalkHand === 'near' ? 'far' : 'near';
