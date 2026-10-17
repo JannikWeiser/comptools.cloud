@@ -166,6 +166,12 @@ img { filter: grayscale(1) contrast(1.08); }
 
 /* ---------- Software-Einstieg ---------- */
 .software-intro { padding-bottom: clamp(32px, 5vw, 56px); }
+/* Akzentfarben je Abschnitt (als Klassen statt Inline-Styles, wegen der Content-Security-Policy) */
+.accent-lime { --tool: var(--c-lime); }
+.accent-red { --tool: var(--c-red); }
+.accent-orange { --tool: var(--c-orange); }
+.accent-blue { --tool: var(--c-blue); }
+
 /* ---------- Tool-Abschnitte (aufklappbar) ---------- */
 .tool-section {
   position: relative; overflow: hidden; isolation: isolate;
