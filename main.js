@@ -199,14 +199,24 @@ if (timer) {
     };
   }
 
-  function draw(p, chalk = 0) {
-    let nearArm = p.nearArm;
-    // Chalken: vordere Hand greift hinter den Rücken in den Chalkbag und wieder zurück
+  // Chalken: Hand zum Chalkbag, zweimal eintauchen, zurück an den Griff
+  function chalkArm(armPose, hip, c) {
+    const into = [hip[0] - 5, hip[1] - 2.2];
+    const elbowBack = [hip[0] - 9, hip[1] - 11];
+    let k, dip = 0;
+    if (c < 0.3) k = easeInOut(c / 0.3);
+    else if (c < 0.72) { k = 1; dip = 1.6 * Math.sin(((c - 0.3) / 0.42) * Math.PI * 4); }
+    else k = 1 - easeInOut((c - 0.72) / 0.28);
+    return { hand: mix(armPose.hand, [into[0], into[1] + dip], k), elbow: mix(armPose.elbow, elbowBack, k) };
+  }
+
+  function draw(p, chalk = 0, chalkHand = 'near') {
+    let nearArm = p.nearArm, farArm = p.farArm;
     if (chalk > 0) {
-      const t = Math.sin(Math.min(1, chalk) * Math.PI);
-      nearArm = { hand: mix(p.nearArm.hand, [p.hip[0] - 6, p.hip[1] - 1], t), elbow: mix(p.nearArm.elbow, [p.hip[0] - 8, p.hip[1] - 10], t) };
+      if (chalkHand === 'near') nearArm = chalkArm(p.nearArm, p.hip, chalk);
+      else farArm = chalkArm(p.farArm, p.hip, chalk);
     }
-    far.setAttribute('d', seg(p.shoulder, p.farArm.elbow, p.farArm.hand) + seg(p.hip, p.farLeg.knee, p.farLeg.foot) + shoe(p.farLeg.foot));
+    far.setAttribute('d', seg(p.shoulder, farArm.elbow, farArm.hand) + seg(p.hip, p.farLeg.knee, p.farLeg.foot) + shoe(p.farLeg.foot));
     near.setAttribute('d', seg(p.shoulder, nearArm.elbow, nearArm.hand) + seg(p.hip, p.nearLeg.knee, p.nearLeg.foot) + shoe(p.nearLeg.foot));
     torso.setAttribute('d', `M${f(p.shoulder[0])} ${f(p.shoulder[1] - 3)}L${f(p.hip[0])} ${f(p.hip[1])}`);
     harness.setAttribute('d', `M${f(p.hip[0] - 3.2)} ${f(p.hip[1] - 1.6)}L${f(p.hip[0] + 2.6)} ${f(p.hip[1] - 2.4)}`);
@@ -227,8 +237,11 @@ if (timer) {
   let phase = 0, targetPhase = 0;
   let y = 0, targetY = 0;
   let lowerFrom = 0;
+  const CHALK_DELAY = 1200, CHALK_MS = 1900, CHALK_REPEAT = 3200;
   let idleSince = performance.now();
   let chalkStart = 0;
+  let chalkHand = 'near';
+  let puffed = false;
   let running = false;
   let idleTimer = 0;
 
@@ -267,10 +280,16 @@ if (timer) {
       const ease = reduceMotion ? 1 : 0.18;
       y = lerp(y, targetY, ease);
       phase = lerp(phase, targetPhase, ease);
-      if (!reduceMotion && now - idleSince > 2500 && rel < 0.995) {
-        if (!chalkStart) { chalkStart = now; el.classList.remove('puff'); void el.offsetWidth; el.classList.add('puff'); }
-        chalk = (now - chalkStart) / 1400;
-        if (chalk >= 1) { chalk = 0; chalkStart = 0; idleSince = now + 4000; }
+      // Solange nicht gescrollt wird: regelmäßig chalken, abwechselnd mit beiden Händen
+      if (!reduceMotion && now - idleSince > CHALK_DELAY && rel < 0.995) {
+        if (!chalkStart) { chalkStart = now; puffed = false; }
+        chalk = (now - chalkStart) / CHALK_MS;
+        if (chalk > 0.72 && !puffed) { puffed = true; el.classList.remove('puff'); void el.offsetWidth; el.classList.add('puff'); }
+        if (chalk >= 1) {
+          chalk = 0; chalkStart = 0;
+          chalkHand = chalkHand === 'near' ? 'far' : 'near';
+          idleSince = now - CHALK_DELAY + CHALK_REPEAT; // nächstes Chalken nach einer kurzen Pause
+        }
       }
       pose = climbPose(phase);
       animating = Math.abs(targetY - y) > 0.3 || Math.abs(targetPhase - phase) > 0.01 || chalk > 0;
@@ -300,14 +319,14 @@ if (timer) {
     el.style.transform = `translateY(${(-y).toFixed(1)}px)`;
     el.classList.toggle('is-lowering', state === 'lower');
     if (state === 'lower') placeRope();
-    draw(pose, chalk);
+    draw(pose, chalk, chalkHand);
 
     if (animating) { requestAnimationFrame(frame); return; }
     running = false;
     // Nächste Chalk-Pause einplanen, ohne die Animation dauerhaft laufen zu lassen
     if (state === 'climb' && rel < 0.995 && !reduceMotion) {
       clearTimeout(idleTimer);
-      idleTimer = setTimeout(kick, Math.max(50, idleSince + 2500 - performance.now()));
+      idleTimer = setTimeout(kick, Math.max(50, idleSince + CHALK_DELAY - performance.now()));
     }
   }
   function kick() {

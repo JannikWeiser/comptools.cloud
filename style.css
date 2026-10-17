@@ -511,17 +511,17 @@ html:not(.js) .tool-plus { display: none; }
 .climber-rope.show .rope-line { transform: scaleY(1); }
 
 /* Chalk-Wolke beim Chalken */
-.chalk { position: absolute; left: 55%; top: 54%; }
+.chalk { position: absolute; left: 62%; top: 50%; }
 .chalk i {
   position: absolute; width: 5px; height: 5px; border-radius: 50%;
   background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.08); opacity: 0;
 }
 .climber.puff .chalk i { animation: puff 1.4s ease-out forwards; }
-.climber.puff .chalk i:nth-child(1) { --dx: -10px; --dy: -6px; animation-delay: .55s; }
-.climber.puff .chalk i:nth-child(2) { --dx: -14px; --dy: 4px; animation-delay: .62s; }
-.climber.puff .chalk i:nth-child(3) { --dx: -6px; --dy: -12px; animation-delay: .7s; }
-.climber.puff .chalk i:nth-child(4) { --dx: -16px; --dy: -2px; animation-delay: .76s; width: 7px; height: 7px; }
-.climber.puff .chalk i:nth-child(5) { --dx: -9px; --dy: 8px; animation-delay: .82s; }
+.climber.puff .chalk i:nth-child(1) { --dx: -10px; --dy: -6px; animation-delay: 0s; }
+.climber.puff .chalk i:nth-child(2) { --dx: -14px; --dy: 4px; animation-delay: .05s; }
+.climber.puff .chalk i:nth-child(3) { --dx: -6px; --dy: -12px; animation-delay: .1s; }
+.climber.puff .chalk i:nth-child(4) { --dx: -16px; --dy: -2px; animation-delay: .15s; width: 7px; height: 7px; }
+.climber.puff .chalk i:nth-child(5) { --dx: -9px; --dy: 8px; animation-delay: .2s; }
 @keyframes puff {
   0% { opacity: .95; transform: translate(0, 0) scale(.6); }
   100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1.8); }
