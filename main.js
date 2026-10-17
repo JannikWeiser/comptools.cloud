@@ -149,12 +149,14 @@ if (timer) {
   const easeInOut = (t) => (t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2);
   const f = (n) => n.toFixed(1);
   const seg = (a, b, c) => `M${f(a[0])} ${f(a[1])}L${f(b[0])} ${f(b[1])}L${f(c[0])} ${f(c[1])}`;
-  // Schuh: kurzes, kräftiges Stück, die Spitze zeigt zur Wand
-  const shoe = (foot) => `M${f(foot[0] - 3.4)} ${f(foot[1] + 0.9)}L${f(foot[0] + 0.3)} ${f(foot[1] - 0.2)}`;
+  // Schuh: vom Knöchel nach vorn, die Spitze zeigt zur Wand (Ferse leicht tiefer)
+  const SHOE = 3.3;
+  const shoe = (ankle) => `M${f(ankle[0] - 0.8)} ${f(ankle[1] + 1.2)}L${f(ankle[0] + SHOE)} ${f(ankle[1] + 0.4)}`;
 
   // ---------- Posen ----------
   const arm = (t) => ({ hand: mix([WALL, 16], [WALL, 2], t), elbow: mix([33, 25], [33.5, 9], t) });
-  const leg = (t) => ({ foot: mix([WALL - 0.5, 58], [WALL - 0.5, 46], t), knee: mix([34.5, 47], [31.5, 38], t) });
+  // Knöchel sitzt eine Schuhlänge vor der Wand, damit die Schuhspitze die Kante berührt
+  const leg = (t) => ({ foot: mix([WALL - SHOE, 57.5], [WALL - SHOE, 46], t), knee: mix([32.5, 47], [30.5, 38], t) });
 
   // Klettern: vordere Hand und hinterer Fuß hoch, dann umgekehrt (diagonal wie beim echten Klettern)
   function climbPose(phase) {
@@ -182,8 +184,8 @@ if (timer) {
     return {
       shoulder: [23.5, 20], hip: [27, 36], head: [21.5, 12.5],
       nearArm: { hand: [27.5, 15], elbow: [24.5, 24] }, farArm: { hand: [27.5, 11], elbow: [25, 19] },
-      nearLeg: { foot: [WALL - 0.5, 42 + 4 * a], knee: [33, 31 + 2 * a] },
-      farLeg: { foot: [WALL - 0.5, 46 - 4 * a], knee: [33.5, 35 - 2 * a] },
+      nearLeg: { foot: [WALL - SHOE, 42 + 4 * a], knee: [31.5, 31 + 2 * a] },
+      farLeg: { foot: [WALL - SHOE, 46 - 4 * a], knee: [32, 35 - 2 * a] },
       bob: 0.6 * Math.sin(step * 2),
     };
   }
@@ -194,7 +196,7 @@ if (timer) {
       shoulder: [27, 18], hip: [28.5, 36], head: [26, 10],
       nearArm: wave ? { hand: [20 + w, 3], elbow: [22 + w * 0.3, 11] } : { hand: [25.5, 33], elbow: [24.5, 26] },
       farArm: { hand: [31, 33], elbow: [31, 26] },
-      nearLeg: { foot: [26, 62], knee: [27.5, 49] }, farLeg: { foot: [31.5, 62], knee: [30.5, 49] },
+      nearLeg: { foot: [25.5, 61], knee: [27.5, 49] }, farLeg: { foot: [30.5, 61], knee: [30, 49] },
       bob: 0,
     };
   }
