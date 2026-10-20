@@ -10,6 +10,11 @@ The website is available in German (https://comptools.cloud/) and English (https
 - [Lead Clock](https://timer.comptools.cloud): Simplified control. An extension for the ItsBlue boulder clock that runs two clocks in parallel for several routes, controlled from one browser, with as many displays as needed. The timer hardware is sold by ItsBlue (https://itsblue.de).
 - [TI Calculator](https://ti.comptools.cloud/): Handle technical incidents without stress. Lead: recovery time, earliest restart and countdown. Bouldering: isolation, gaps and start times at a glance. Works offline as a web app.
 
+## FAQ & guides
+
+- [FAQ & guides (English)](https://comptools.cloud/en/help.html): user guides for all apps and answers to common questions (accounts, devices, internet, data, languages).
+- [Fragen & Anleitungen (Deutsch)](https://comptools.cloud/hilfe.html)
+
 ## Competition tech
 
 - Hardware & training: VAR system, networking and livestream equipment, advice on events, hardware and software, staff training, and referrals to experienced competition staff. Enquiries: info@comptools.cloud

@@ -14,4 +14,18 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://comptools.cloud/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://comptools.cloud/"/>
   </url>
+  <url>
+    <loc>https://comptools.cloud/hilfe.html</loc>
+    <lastmod>2026-10-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://comptools.cloud/hilfe.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://comptools.cloud/en/help.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://comptools.cloud/hilfe.html"/>
+  </url>
+  <url>
+    <loc>https://comptools.cloud/en/help.html</loc>
+    <lastmod>2026-10-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://comptools.cloud/hilfe.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://comptools.cloud/en/help.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://comptools.cloud/hilfe.html"/>
+  </url>
 </urlset>
