@@ -17,7 +17,7 @@ assets/img/         Bilder als WebP, og-image.jpg für Link-Vorschauen (Bildnach
 robots.txt          Erlaubt alle Crawler und verweist auf die Sitemap
 sitemap.xml         Beide Sprachversionen; lastmod bei größeren Änderungen anpassen
 llms.txt            Kurzbeschreibung für AI-Agenten – bei Textänderungen mitpflegen
-favicon.svg …       Favicon und App-Icon
+favicon.svg …       Favicon (SVG, .ico 16/32/48, PNG 32/192/512), Apple-Icon, site.webmanifest
 CNAME               Eigene Domain für GitHub Pages
 ```
 
