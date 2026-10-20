@@ -1,0 +1,20 @@
+# Comptools
+
+> Web apps and competition tech for climbing competitions, built by Jannik Weiser (Augsburg, Germany). Jannik works as a judge and technician at more than 20 climbing competitions a year; the tools are built for gaps in the competition workflow and tested at real events.
+
+The website is available in German (https://comptools.cloud/) and English (https://comptools.cloud/en/). Contact: info@comptools.cloud
+
+## Web apps
+
+- [Callzone Management](https://callzone-management.onrender.com): The modern call zone. Keeps track of every starter, with live data from Vertical-Life results.info. Modes: single round, sequence of several rounds, speed training, or a shared session across several tablets. Runs in the browser on iPad, laptop or a big screen.
+- [Lead Clock](https://timer.comptools.cloud): Simplified control. An extension for the ItsBlue boulder clock that runs two clocks in parallel for several routes, controlled from one browser, with as many displays as needed. The timer hardware is sold by ItsBlue (https://itsblue.de).
+- [TI Calculator](https://ti.comptools.cloud/): Handle technical incidents without stress. Lead: recovery time, earliest restart and countdown. Bouldering: isolation, gaps and start times at a glance. Works offline as a web app.
+
+## Competition tech
+
+- Hardware & training: VAR system, networking and livestream equipment, advice on events, hardware and software, staff training, and referrals to experienced competition staff. Enquiries: info@comptools.cloud
+
+## Legal
+
+- [Impressum](https://comptools.cloud/impressum.html)
+- [Datenschutz](https://comptools.cloud/datenschutz.html)

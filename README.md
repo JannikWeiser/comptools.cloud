@@ -11,10 +11,16 @@ impressum.html      Impressum (nur Deutsch, auch von der englischen Seite verlin
 datenschutz.html    Datenschutzerklärung (nur Deutsch)
 style.css           Design für alle Seiten, Farben ganz oben unter :root
 main.js             Menü, Einblenden beim Scrollen, Animationen der Mockups
-assets/img/         Optimierte Bilder (Bildnachweise im Impressum pflegen)
+assets/img/         Bilder als WebP, og-image.jpg für Link-Vorschauen (Bildnachweise im Impressum pflegen)
+404.html            Fehlerseite (absolute Pfade, weil GitHub sie für jede fehlende URL ausliefert)
+robots.txt          Erlaubt alle Crawler und verweist auf die Sitemap
+sitemap.xml         Beide Sprachversionen; lastmod bei größeren Änderungen anpassen
+llms.txt            Kurzbeschreibung für AI-Agenten – bei Textänderungen mitpflegen
 favicon.svg …       Favicon und App-Icon
 CNAME               Eigene Domain für GitHub Pages
 ```
+
+Strukturierte Daten (JSON-LD) stehen am Ende des `<head>` beider Startseiten und müssen bei Textänderungen an den Tools mitgepflegt werden. Neue Bilder als WebP ablegen, z. B. `cwebp -q 74 -m 6 bild.jpg -o bild.webp`.
 
 Die Mockups der Tools sind reines HTML/CSS im Look der echten Apps und laden nichts von außen.
 

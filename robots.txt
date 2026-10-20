@@ -1,0 +1,5 @@
+# Alle Crawler, auch Suchmaschinen und AI-Agenten, sind willkommen.
+User-agent: *
+Allow: /
+
+Sitemap: https://comptools.cloud/sitemap.xml

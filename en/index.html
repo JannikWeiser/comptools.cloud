@@ -13,7 +13,11 @@
   <meta property="og:locale" content="en_GB">
   <link rel="canonical" href="https://comptools.cloud/en/">
   <meta property="og:url" content="https://comptools.cloud/en/">
-  <meta property="og:image" content="https://comptools.cloud/assets/img/hero-wall.jpg">
+  <meta property="og:image" content="https://comptools.cloud/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -21,6 +25,91 @@
   <link rel="alternate" hreflang="en" href="https://comptools.cloud/en/">
   <link rel="alternate" hreflang="x-default" href="https://comptools.cloud/">
   <link rel="stylesheet" href="../style.css?v=20261017j">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://comptools.cloud/#website",
+      "url": "https://comptools.cloud/",
+      "name": "Comptools",
+      "inLanguage": [
+        "de",
+        "en"
+      ],
+      "publisher": {
+        "@id": "https://comptools.cloud/#person"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://comptools.cloud/#person",
+      "name": "Jannik Weiser",
+      "email": "info@comptools.cloud",
+      "jobTitle": "Climbing competition judge and technician",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Augsburg",
+        "addressCountry": "DE"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://comptools.cloud/en/#webpage",
+      "url": "https://comptools.cloud/en/",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://comptools.cloud/#website"
+      },
+      "about": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "Callzone Management",
+          "url": "https://callzone-management.onrender.com",
+          "description": "The modern call zone: keep track of every starter with live data from results.info, several modes, in the browser on iPad, laptop or a big screen.",
+          "applicationCategory": "SportsApplication",
+          "operatingSystem": "Web",
+          "author": {
+            "@id": "https://comptools.cloud/#person"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Lead Clock",
+          "url": "https://timer.comptools.cloud",
+          "description": "Extension for the ItsBlue boulder clock: two timers in parallel, one browser control, as many displays as needed.",
+          "applicationCategory": "SportsApplication",
+          "operatingSystem": "Web",
+          "author": {
+            "@id": "https://comptools.cloud/#person"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "TI Calculator",
+          "url": "https://ti.comptools.cloud/",
+          "description": "Help with technical incidents: recovery time, earliest restart and countdown in lead; isolation, gaps and start times in bouldering; works offline.",
+          "applicationCategory": "SportsApplication",
+          "operatingSystem": "Web",
+          "author": {
+            "@id": "https://comptools.cloud/#person"
+          }
+        },
+        {
+          "@type": "Service",
+          "name": "Competition tech: hardware & training",
+          "description": "VAR system, networking and livestream for climbing competitions, consulting, staff training and referrals to competition staff.",
+          "provider": {
+            "@id": "https://comptools.cloud/#person"
+          },
+          "areaServed": "Europe"
+        }
+      ]
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 
@@ -42,7 +131,7 @@
 
   <!-- HERO -->
   <section class="hero">
-    <img class="hero-img" src="../assets/img/hero-wall.jpg" alt="Competition wall with spectators at a European climbing championship">
+    <img class="hero-img" src="../assets/img/hero-wall.webp" srcset="../assets/img/hero-wall-1100.webp 1100w, ../assets/img/hero-wall.webp 1800w" sizes="100vw" fetchpriority="high" alt="Competition wall with spectators at a European climbing championship">
     <div class="hero-content">
       <h1>Tools for <em>competitions.</em></h1>
       <p class="hero-lead">Web apps for officials and organisers of climbing competitions.</p>
@@ -241,7 +330,7 @@
 
   <!-- AUS DER PRAXIS -->
   <section id="praxis" class="maker section">
-    <img class="maker-img reveal" src="../assets/img/portrait.jpg" alt="Portrait of Jannik Weiser at a competition">
+    <img class="maker-img reveal" src="../assets/img/portrait.webp" alt="Portrait of Jannik Weiser at a competition">
     <div class="maker-copy reveal">
       <p class="eyebrow">From the field</p>
       <p class="maker-text">I’m Jannik, working as a judge and technician at more than 20 climbing competitions a year. <span class="muted">These tools are built wherever something is missing in the workflow, and tested at real competitions.</span></p>
@@ -261,9 +350,9 @@
         </div>
       </div>
       <div class="hardware-media">
-        <img class="hw-big" src="../assets/img/tech-desk.jpg" alt="Tech desk with multiview monitor, Stream Deck and laptop" loading="lazy">
-        <img src="../assets/img/tech-tent.jpg" alt="Tech tent with laptops and monitors at an outdoor competition" loading="lazy">
-        <img src="../assets/img/poe-case.jpg" alt="Rugged tech case with PoE ports" loading="lazy">
+        <img class="hw-big" src="../assets/img/tech-desk.webp" alt="Tech desk with multiview monitor, Stream Deck and laptop" loading="lazy">
+        <img src="../assets/img/tech-tent.webp" alt="Tech tent with laptops and monitors at an outdoor competition" loading="lazy">
+        <img src="../assets/img/poe-case.webp" alt="Rugged tech case with PoE ports" loading="lazy">
       </div>
     </div>
   </section>

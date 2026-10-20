@@ -13,7 +13,11 @@
   <meta property="og:locale" content="de_DE">
   <link rel="canonical" href="https://comptools.cloud/">
   <meta property="og:url" content="https://comptools.cloud/">
-  <meta property="og:image" content="https://comptools.cloud/assets/img/hero-wall.jpg">
+  <meta property="og:image" content="https://comptools.cloud/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -21,6 +25,91 @@
   <link rel="alternate" hreflang="en" href="https://comptools.cloud/en/">
   <link rel="alternate" hreflang="x-default" href="https://comptools.cloud/">
   <link rel="stylesheet" href="style.css?v=20261017j">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://comptools.cloud/#website",
+      "url": "https://comptools.cloud/",
+      "name": "Comptools",
+      "inLanguage": [
+        "de",
+        "en"
+      ],
+      "publisher": {
+        "@id": "https://comptools.cloud/#person"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://comptools.cloud/#person",
+      "name": "Jannik Weiser",
+      "email": "info@comptools.cloud",
+      "jobTitle": "Kampfrichter und Wettkampftechniker",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Augsburg",
+        "addressCountry": "DE"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://comptools.cloud/#webpage",
+      "url": "https://comptools.cloud/",
+      "inLanguage": "de",
+      "isPartOf": {
+        "@id": "https://comptools.cloud/#website"
+      },
+      "about": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "Callzone-Management",
+          "url": "https://callzone-management.onrender.com",
+          "description": "Die moderne Callzone: Überblick über alle Starter mit Live-Daten von results.info, mehrere Modi, im Browser auf iPad, Laptop oder großem Screen.",
+          "applicationCategory": "SportsApplication",
+          "operatingSystem": "Web",
+          "author": {
+            "@id": "https://comptools.cloud/#person"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Lead-Uhr",
+          "url": "https://timer.comptools.cloud",
+          "description": "Erweiterung für die Boulderuhr von ItsBlue: zwei Timer parallel, eine Steuerung im Browser, beliebig viele Anzeigen.",
+          "applicationCategory": "SportsApplication",
+          "operatingSystem": "Web",
+          "author": {
+            "@id": "https://comptools.cloud/#person"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "TI-Rechner",
+          "url": "https://ti.comptools.cloud/",
+          "description": "Hilfe bei technischen Zwischenfällen: Erholungszeit, frühester Neustart und Countdown im Lead, Iso, Lücken und Startzeiten im Bouldern, offline nutzbar.",
+          "applicationCategory": "SportsApplication",
+          "operatingSystem": "Web",
+          "author": {
+            "@id": "https://comptools.cloud/#person"
+          }
+        },
+        {
+          "@type": "Service",
+          "name": "Wettkampftechnik: Hardware & Schulungen",
+          "description": "VAR-System, Netzwerktechnik und Livestream für Kletterwettkämpfe, Beratung, Schulung von Personal und Vermittlung von Wettkampfpersonal.",
+          "provider": {
+            "@id": "https://comptools.cloud/#person"
+          },
+          "areaServed": "Europe"
+        }
+      ]
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 
@@ -42,7 +131,7 @@
 
   <!-- HERO -->
   <section class="hero">
-    <img class="hero-img" src="assets/img/hero-wall.jpg" alt="Wettkampfwand mit Publikum bei einer Kletter-EM">
+    <img class="hero-img" src="assets/img/hero-wall.webp" srcset="assets/img/hero-wall-1100.webp 1100w, assets/img/hero-wall.webp 1800w" sizes="100vw" fetchpriority="high" alt="Wettkampfwand mit Publikum bei einer Kletter-EM">
     <div class="hero-content">
       <h1>Tools für den <em>Wettkampf.</em></h1>
       <p class="hero-lead">Web-Apps für Officials und Veranstalter von Kletterwettkämpfen.</p>
@@ -241,7 +330,7 @@
 
   <!-- AUS DER PRAXIS -->
   <section id="praxis" class="maker section">
-    <img class="maker-img reveal" src="assets/img/portrait.jpg" alt="Porträt von Jannik Weiser bei einem Wettkampf">
+    <img class="maker-img reveal" src="assets/img/portrait.webp" alt="Porträt von Jannik Weiser bei einem Wettkampf">
     <div class="maker-copy reveal">
       <p class="eyebrow">Aus der Praxis</p>
       <p class="maker-text">Ich bin Jannik und auf über 20 Kletterwettkämpfen im Jahr als Schiedsrichter und Techniker im Einsatz. <span class="muted">Diese Tools entstehen dort, wo im Ablauf etwas fehlt, und werden auf echten Wettkämpfen getestet.</span></p>
@@ -261,9 +350,9 @@
         </div>
       </div>
       <div class="hardware-media">
-        <img class="hw-big" src="assets/img/tech-desk.jpg" alt="Technik-Arbeitsplatz mit Multiview-Monitor, Stream Deck und Laptop" loading="lazy">
-        <img src="assets/img/tech-tent.jpg" alt="Technikzelt mit Laptops und Monitoren bei einem Outdoor-Wettkampf" loading="lazy">
-        <img src="assets/img/poe-case.jpg" alt="Robuster Technikkoffer mit PoE-Anschlüssen" loading="lazy">
+        <img class="hw-big" src="assets/img/tech-desk.webp" alt="Technik-Arbeitsplatz mit Multiview-Monitor, Stream Deck und Laptop" loading="lazy">
+        <img src="assets/img/tech-tent.webp" alt="Technikzelt mit Laptops und Monitoren bei einem Outdoor-Wettkampf" loading="lazy">
+        <img src="assets/img/poe-case.webp" alt="Robuster Technikkoffer mit PoE-Anschlüssen" loading="lazy">
       </div>
     </div>
   </section>
