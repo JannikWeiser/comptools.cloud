@@ -251,7 +251,14 @@ html:not(.js) .tool-plus { display: none; }
   font-size: 15px; color: rgba(255,255,255,.72);
 }
 .tool-features b { color: var(--white); font-weight: 700; }
-.tool-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.tool-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.tool-help {
+  padding: 8px 4px; color: rgba(255,255,255,.7);
+  font-size: 15px; font-weight: 600; text-decoration: none;
+}
+.tool-help span { display: inline-block; transition: transform .25s var(--ease); }
+.tool-help:hover { color: var(--tool); }
+.tool-help:hover span { transform: translateX(4px); }
 .btn-tool { background: var(--tool); border-color: var(--tool); color: var(--black); }
 .btn-tool:hover { box-shadow: 0 10px 30px color-mix(in srgb, var(--tool) 40%, transparent); }
 
@@ -465,6 +472,9 @@ html:not(.js) .tool-plus { display: none; }
 .contact-mail:hover { transform: scale(1.03); background: var(--c-lime); }
 .contact-mail span { transition: transform .25s var(--ease); }
 .contact-mail:hover span { transform: translateX(4px); }
+.contact-help { margin-top: 28px; color: rgba(255,255,255,.55); font-size: 15px; }
+.contact-help a { color: rgba(255,255,255,.85); font-weight: 600; }
+.contact-help a:hover { color: var(--white); }
 .contact-hint { color: rgba(255,255,255,.5); max-width: 480px; margin: 0 auto 28px; font-size: 15px; }
 .contact-ig { font-weight: 600; text-decoration: none; color: rgba(255,255,255,.85); }
 .contact-ig:hover { color: var(--white); text-decoration: underline; }
@@ -614,6 +624,8 @@ html:not(.js) .tool-plus { display: none; }
   padding: 22px; border-radius: var(--radius-sm);
   background: var(--black); color: var(--white);
 }
+.guide-card { scroll-margin-top: 110px; }
+.guide-card:target { box-shadow: 0 0 0 2px var(--tool), 0 0 28px -6px var(--tool); }
 .guide-card h3 { display: flex; align-items: center; gap: 10px; font-size: 18px; letter-spacing: -0.02em; }
 .guide-card h3::before {
   content: ""; flex: none; width: 10px; height: 10px; border-radius: 50%;
