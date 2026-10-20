@@ -7,7 +7,7 @@ Website von Jannik Weiser: Software-Tools (Callzone-Management, Lead-Uhr, TI-Rec
 ```
 index.html          Startseite (Deutsch)
 en/index.html       Startseite (Englisch) – Textänderungen immer in beiden Sprachen nachziehen
-hilfe.html          Fragen & Anleitungen (DE), en/help.html (EN); im Footer verlinkt, FAQ auch als JSON-LD im <head>
+hilfe.html          Fragen & Anleitungen (DE), en/help.html (EN); verlinkt aus den Tool-Zeilen und dem Kontakt, FAQ auch als JSON-LD im <head>
 impressum.html      Impressum (nur Deutsch, auch von der englischen Seite verlinkt)
 datenschutz.html    Datenschutzerklärung (nur Deutsch)
 style.css           Design für alle Seiten, Farben ganz oben unter :root
